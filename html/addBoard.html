@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="../style/addBoard.css">
+</head>
+<body>
+    <header>
+        <div><</div>
+        <h1>아무 말 대잔치</h1>
+        <div>
+            <img src="../style/춘식.png" alt="춘식" />
+        </div>
+    </header>
+    <main>
+        <h2 class="mainHeader">
+            게시글 수정
+        </h2>
+        <div class="mainBody">
+            <h3>
+                제목*
+            </h3>
+            <input class="mainBody--titleInput" placeholder="제목을 입력해주세요. (최대 26글자)">
+            </input>
+            <h3>
+                내용*
+            </h3>
+            <div class="mainBody--content">
+                <textarea type="text" placeholder="내용을 입력해주세요.">
+
+                </textarea>
+            </div>
+            <p class="helper-text">helper-text
+            </p>
+            <div class="mainBody--imageBox">
+                <h3>이미지</h3>
+                <div class="mainBody--imageBox--file">
+                    <button>파일 선택</button>
+                    <p>기존 파일 명</p>
+                </div>
+            </div>
+            <div class="mainBody--submit">
+                <button class="mainBody--submit--btn">완료</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+
+<!-- mainBody--content > p를 입력 가능한 태그로 바꾸고 기존 내용을 default로 집어넣어야 한다+ height 크기 준거 없애기-->

@@ -2,19 +2,19 @@ body{
     width: 100vw;
     height: 100vh;
 
-    background-color: #f0f0f0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    overflow-y: hidden;
+    background-color: #f0f0f0
 }
 
 header{
     width: 100%;
     height: 104px;
+
+    font-family: Sandoll GogoRound;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    text-align: center;
+
     border-bottom: solid 1px;
     box-sizing: border-box;
 
@@ -22,6 +22,18 @@ header{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+header>div{
+    width: 10%;
+    text-align: center;
+}
+
+
+img{
+    width: 36px;
+    height: 36px;
+    /* text-align: center; */
 }
 
 header>h1{
@@ -62,9 +74,60 @@ main{
     text-align: center;
 }
 
+.mainWrap--profileBox{
+    width:355px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    margin-top: 30px;
+    
+}
+
+#profileImg--Box{
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#profileImg{
+    width: 149px;
+    height: 149px;
+    
+    filter:brightness(0.8);
+}
+
+#profileChangeBtn{
+    width: 52px;
+    height: 27px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17.9px;
+
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: solid 1px;
+    border-color: #fff;
+
+    background-color: transparent;
+    color: #fff;
+
+}
+
 .mainWrap--loginForm{
     box-sizing: border-box;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 .mainWrap--loginForm--formItems{
@@ -79,6 +142,13 @@ main{
     font-size: 15px;
     font-weight: 700;
     line-height: 17.9px;
+    text-align: left;
+}
+.mainWrap--loginForm--formItems>p{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.71px;
     text-align: left;
 }
 
@@ -119,7 +189,7 @@ main{
     color: #FFFFFF;
 }
 
-#joinBox{
+#withdrawlBox{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -131,16 +201,41 @@ main{
     margin-top: 15px;
 }
 
-#joinBox > a{
+#withdrawlBox > a{
     text-decoration: none; /* 밑줄 제거 */
     color: #000;
 }
 
 
-#joinBox > a:visited {
+#withdrawlBox > a:visited {
     font-family: Pretendard;
     font-size: 14px;
     font-weight: 400;
     line-height: 16.71px;
     text-align: left;
+}
+
+.completeBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#completeBox--btn{
+    width: 102px;
+    height: 46px;
+    top: 832px;
+    left: 915px;
+    padding: 12px 20px 12px 20px;
+    gap: 0px;
+    border-radius: 30px;
+    opacity: 0px;
+
+    background-color: #ACA0EB;
+    color: #FFF;
+
+    box-sizing: border-box;
+    margin-top: 50px;
+    border: none;
 }

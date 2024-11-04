@@ -1,6 +1,8 @@
 body{
     width: 100vw;
     height: 100vh;
+
+    background-color: #f0f0f0
 }
 
 header{
@@ -63,6 +65,31 @@ main{
     box-sizing: border-box;
     border-bottom: solid 1px;
 }
+
+.mainWrap--header > h2{
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 31.2px;
+    text-align: left;
+}
+
+#writer{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 19.5px;
+    text-align: left;
+}
+
+#time{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.2px;
+    text-align: right;
+}
+
 .mainWrap--header--secondBox{
     width: 100%;
     height: 100%;
@@ -88,6 +115,19 @@ main{
     display: inline-block;
 }
 
+.optionBtn{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23.48px;
+    text-align: center;
+
+    background-color:transparent;
+
+    border-radius: 4px;
+    border-color: #ACA0EB;
+}
+
 .mainWrap--picture{
     width: 544px;
     height: 306px;
@@ -97,6 +137,13 @@ main{
 
 .mainWrap--content{
     width: 544px;
+
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.15px;
+    text-align: left;
+
 }
 
 .mainWrap--countBox{
@@ -111,6 +158,12 @@ main{
 .mainWrap--countBox--content{
     width: 116px;
     height: 77px;
+
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: center;
 
     display: flex;
     flex-direction: column;
@@ -143,6 +196,11 @@ main{
     width: 100%;
     height: 60%;
 
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.15px;
+    text-align: left;
 
     box-sizing: border-box;
     padding: 16px;
@@ -150,6 +208,8 @@ main{
     border-bottom: solid 1px;
     border-radius: 16px 16px 0px 0px;
     resize: none;
+
+    background-color: #fff;
 }
 
 .mainWrap--commentBox--btnBox{
@@ -165,9 +225,19 @@ main{
     width: 138px;
     height: 39px;
     
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25.04px;
+    text-align: center;
+
     box-sizing: border-box;
     border: none;
     border-radius: 16px;
+
+    background-color: #ACA0EB;
+    color: #fff;
+
 }
 
 .mainWrap--historyBox{
@@ -190,6 +260,13 @@ main{
 }
 
 .mainWrap--historyBox--leftBox--bottom > p{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.15px;
+    text-align: left;
+
+    box-sizing: border-box;
     padding-left: 36px;
 }
 
@@ -202,16 +279,4 @@ main{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-
-.mainWrap--historyBox--rightBox > button{
-    box-sizing: border-box;
-    border-radius: 9px;
-
-    font-family: Pretendard;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 23.48px;
-    text-align: center;
-
 }
