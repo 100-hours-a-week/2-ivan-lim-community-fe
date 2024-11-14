@@ -24,11 +24,15 @@ header{
     align-items: center;
 }
 
-header>div{
+header>button{
     width: 10%;
     text-align: center;
+    border: none;
 }
 
+header>div{
+    width: 10%;
+}
 
 img{
     width: 36px;
@@ -116,10 +120,9 @@ input::placeholder{
 
     border: none;
     resize: none;
-
 }
 
-.helper-text{
+#helper-text{
     font-family: Inter;
     font-size: 12px;
     font-weight: 400;
@@ -129,6 +132,7 @@ input::placeholder{
     padding-bottom : 0px;
     border: none;
     
+    display: none;
     color: #FF0000;
 }
 
@@ -156,7 +160,6 @@ input::placeholder{
     gap: 10px;
 }
 
-
 .mainBody--imageBox--file>p{
     font-family: Pretendard;
     font-size: 14px;
@@ -166,13 +169,12 @@ input::placeholder{
 
     line-height: 28px;
 }
+
 .mainBody--imageBox--file > button{
     border-radius: 4px;
 
     background-color: #D9D9D9;
-
 }
-
 
 .mainBody--submit{
     display: flex;
@@ -194,7 +196,7 @@ input::placeholder{
 
     border-radius: 4px;
 
-    background-color: #7F6AEE;
+    background-color: #ACA0EB;
     color: #fff;
     border: none;
 }

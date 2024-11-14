@@ -6,10 +6,11 @@
     <title>Detail</title>
     <link rel="stylesheet" href="../style/reset.css">
     <link rel="stylesheet" href="../style/detail.css">
+    <script src="../js/detail.js" defer></script>
 </head>
 <body>
     <header>
-        <div><</div>
+        <button><</button>
         <h1>아무 말 대잔치</h1>
         <div>
             <img src="../style/춘식.png" alt="춘식" />
@@ -28,33 +29,29 @@
                         <span id="time">2021-01-01 00:00:00</span>
                     </div>
                     <div class="mainWrap--header--secondBox--option">
-                        <button class="optionBtn">수정</button>
-                        <button class="optionBtn">삭제</button>
+                        <button id="postEditBtn" class="optionBtn">수정</button>
+                        <button id="postDeleteBtn" class="optionBtn">삭제</button>
                     </div>
                 </div>
             </div>
-            <div class="mainWrap--picture">
-                
-            </div>
+            <img class="mainWrap--picture" src="">
+            </img>
             <div class="mainWrap--content">
                 <p>
-                    무엇을 얘기할까요? 아무말이라면, 삶은 항상 놀라운 모험이라고 생각합니다. 우리는 매일 새로운 경험을 하고 배우며 성장합니다. 때로는 어려움과 도전이 있지만, 그것들이 우리를 더 강하고 지혜롭게 만듭니다. 또한 우리는 주변의 사람들과 연결되며 사랑과 지지를 받습니다. 그래서 우리의 삶은 소중하고 의미가 있습니다.
-                    자연도 아름다운 이야기입니다. 우리 주변의 자연은 끝없는 아름다움과 신비로움을 담고 있습니다. 산, 바다, 숲, 하늘 등 모든 것이 우리를 놀라게 만들고 감동시킵니다. 자연은 우리의 생명과 안정을 지키며 우리에게 힘을 주는 곳입니다.
-                    마지막으로, 지식을 향한 탐구는 항상 흥미로운 여정입니다. 우리는 끝없는 지식의 바다에서 배우고 발견할 수 있으며, 이것이 우리를 더 깊이 이해하고 세상을 더 넓게 보게 해줍니다.
-                    그런 의미에서, 삶은 놀라움과 경이로움으로 가득 차 있습니다. 새로운 경험을 즐기고 항상 앞으로 나아가는 것이 중요하다고 생각합니다.
+                    내용 1
                 </p>
             </div>
             <div class="mainWrap--countBox">
-                <div class="mainWrap--countBox--content" id="good">
-                    <p>123</p>
+                <div class="mainWrap--countBox--content">
+                    <p  id="like">123</p>
                     <p>좋아요수</p>
                 </div>
-                <div class="mainWrap--countBox--content" id="look">
-                    <p>123</p>
+                <div class="mainWrap--countBox--content">
+                    <p id="view">123</p>
                     <p>조회수</p>
                 </div>
-                <div class="mainWrap--countBox--content" id="comment">
-                    <p>123</p>
+                <div class="mainWrap--countBox--content">
+                    <p id="comment">123</p>
                     <p>댓글</p>
                 </div>
             </div>
@@ -64,27 +61,18 @@
                     <button>댓글 등록</button>
                 </div>
             </div>
-            <div class="mainWrap--historyBox">
-                <div class="mainWrap--historyBox--leftBox">
-                    <div class="mainWrap--historyBox--leftBox--top">
-                        <span>
-                            <img src="../style/춘식.png" alt="춘식" />
-                        </span>
-                        <span id="writer">더미 작성자 1</span>
-                        <span id="time">2021-01-01 00:00:00</span>
-                    </div>
-                    <div class="mainWrap--historyBox--leftBox--bottom">
-                        <p>
-                            댓글내용
-                        </p>
-                    </div>
-                </div>
-            <div class="mainWrap--historyBox--rightBox">
-                <button class="optionBtn">수정</button>
-                <button class="optionBtn">삭제</button>
-            </div>
-            </div>
+            <!-- 댓글 기록 동적 추가 -->
         </div>
     </main>
+    <div id="modal" class="modal">
+        <div class="modalContent">
+            <p class="modalContent--header">게시글을 삭제하시겠습니까?</p>
+            <p class="modalContent--body">삭제한 내용은 복구 할 수 없습니다.</p>
+            <div class="modalContent--btnBox">
+                <button class="modalContent--cancelBtn">취소</button>
+                <button class="modalContent--checkBtn">확인</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
