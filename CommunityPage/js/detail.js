@@ -10,6 +10,7 @@ fetch(`http://localhost:5001/posts/${postId}`)
     return fetch(`http://localhost:5001/users/${post.writerId}`)
         .then(response => response.json())
         .then(user => {
+            console.log(user);
         updatePostContent(post, user);
         });
     })
@@ -268,3 +269,28 @@ for (let checkBtn of $modalCheckBtns) {
 $commentInput.addEventListener("input", updateCommentButtonState);
 $commentSubmitBtn.addEventListener("click", clickCommentSubmitBtn);
 
+
+const $headerProfileImg = document.querySelector('#headerProfileImg');
+const $dropdownMenu = document.querySelector('.dropdown-menu');
+$headerProfileImg.addEventListener('click', ()=>{
+    if($dropdownMenu.style.display === 'block') 
+        $dropdownMenu.style.display = 'none';
+    else
+        $dropdownMenu.style.display = 'block';
+});
+
+const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
+const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
+const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
+
+$memInfoModi.addEventListener('click', ()=>{
+    location.href = '/memInfoModi';
+});
+
+$passModi.addEventListener('click', ()=>{
+    location.href = '/passModi';
+});
+
+$logout.addEventListener('click', ()=>{
+    location.href = '/logout';
+});

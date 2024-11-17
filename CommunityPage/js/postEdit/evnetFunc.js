@@ -21,3 +21,28 @@ $fileInput.addEventListener("change", (event) => {
 
     $uploadMessage.textContent = file.name;
 });
+
+const $headerProfileImg = document.querySelector('#headerProfileImg');
+const $dropdownMenu = document.querySelector('.dropdown-menu');
+$headerProfileImg.addEventListener('click', ()=>{
+    if($dropdownMenu.style.display === 'block') 
+        $dropdownMenu.style.display = 'none';
+    else
+        $dropdownMenu.style.display = 'block';
+});
+
+const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
+const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
+const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
+
+$memInfoModi.addEventListener('click', ()=>{
+    location.href = '/memInfoModi';
+});
+
+$passModi.addEventListener('click', ()=>{
+    location.href = '/passModi';
+});
+
+$logout.addEventListener('click', ()=>{
+    location.href = '/logout';
+});

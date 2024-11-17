@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../style/reset.css" />
-    <link rel="stylesheet" href="../style/memInfoModi.css" />
+    <link rel="stylesheet" href="../style/memInfoModi.css" />\
+    <script src="../js/memInfoModi/memInfoModi_event.js" defer></script>
+    <script src="../js/memInfoModi/memInfoModi.js" defer></script>
 </head>
 <body>
     <header>
         <div></div>
         <h1>아무 말 대잔치</h1>
-        <div>
-            <img src="../style/춘식.png" alt="춘식" />
+        <div style="position: relative;">
+            <img id="headerProfileImg" src="../style/춘식.png" alt="춘식" />
+            <ul class="dropdown-menu">
+                <li><p>회원정보수정</p></li>
+                <li><p>비밀번호수정</a></li>
+                <li><p>로그아웃</p></li>
+            </ul>
         </div>
     </header>
     <main>
@@ -22,20 +29,22 @@
                 <span>프로필 사진*</span>
                 <div id="profileImg--Box">
                     <img id="profileImg" src="../style/춘식.png" alt="춘식" />
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
                     <button id="profileChangeBtn">변경</button>
                 </div>
             </div>
             <form class="mainWrap--loginForm">
                 <div class="mainWrap--loginForm--formItems">
                     <label for="email">이메일</label>
-                    <p>startupcode@gmail.com</p>
-                    <span class="helper-text">* helper text</span>
-                    <label for="text">닉네임</label>
-                    <input type="text" id="password" placeholder="스타트업코드" required>
-                    <span class="helper-text">* helper text</span>
-                    <button type="submit">수정하기</button>
+                    <p id="email">startupcode@gmail.com</p>
+
+                    <label for="nicknameInput">닉네임</label>
+                    <input type="text" id="nicknameInput" name="nickname" placeholder="스타트업코드" required>
+                    <span class="helper-text">*닉네임을 입력해주세요.</span>
+                    
+                    <button id="modiBtn" type="submit">수정하기</button>
                     <div id="withdrawlBox">
-                        <a href="#">회원탈퇴</a>
+                        <button>회원탈퇴</button>
                     </div>
                     <div class="completeBox">
                         <button id="completeBox--btn">수정완료</button>
@@ -44,5 +53,15 @@
             </form>
         </div>
     </main>
+    <div id="modal" class="modal">
+        <div class="modalContent">
+            <p class="modalContent--header">회원탈퇴 하시겠습니까?</p>
+            <p class="modalContent--body">작성된 게시글과 댓글은 삭제됩니다.</p>
+            <div class="modalContent--btnBox">
+                <button class="modalContent--cancelBtn">취소</button>
+                <button class="modalContent--checkBtn">확인</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

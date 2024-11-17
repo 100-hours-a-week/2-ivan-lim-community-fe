@@ -76,7 +76,7 @@ main{
     gap: 5px;
 }
 
-.mainWrap--profile > p{
+.mainWrap--profile > article{
     font-family: Pretendard;
     font-size: 15px;
     font-weight: 700;
@@ -84,7 +84,7 @@ main{
     text-align: left;
 }
 
-#helper-text{
+.helper-text{
     font-family: Inter;
     font-size: 12px;
     font-weight: 400;
@@ -94,7 +94,8 @@ main{
     color: #FF0000;
 }
 
-.circleBox{
+
+.profileBox{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,16 +140,6 @@ main{
 
     box-sizing: border-box;
     padding: 5px;
-}
-
-.helper-text{
-    font-family: Inter;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14.52px;
-    text-align: left;
-
-    color: #FF0000;
 }
 
 #joinBtn{

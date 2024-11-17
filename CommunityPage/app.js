@@ -9,14 +9,14 @@ const port = 3000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(
-    express.static(join(__dirname, '../2-ivan-lim-community-fe/CommunityPage')),
+    express.static(join(__dirname, '')),
 );
 
 app.get('/data.json', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/js/data.json',
+            'js/data.json',
         ),
     ); // HTML 파일 응답
 });
@@ -25,7 +25,7 @@ app.get('/login', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/html/login.html',
+            'html/login.html',
         ),
     ); // HTML 파일 응답
 });
@@ -34,7 +34,7 @@ app.get('/listInquiry', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/html/listInquiry.html',
+            'html/listInquiry.html',
         ),
     );
 });
@@ -43,7 +43,7 @@ app.get('/addBoard', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/html/addBoard.html',
+            'html/addBoard.html',
         ),
     );
 });
@@ -52,7 +52,7 @@ app.get('/postEdit', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/html/postEdit.html',
+            'html/postEdit.html',
         ),
     );
 });
@@ -61,7 +61,7 @@ app.get('/detail', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/html/detail.html',
+            'html/detail.html',
         ),
     );
 });
@@ -70,7 +70,16 @@ app.get('/join', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/html/join.html',
+            'html/join.html',
+        ),
+    );
+});
+
+app.get('/memInfoModi', (req, res) => {
+    res.sendFile(
+        join(
+            __dirname,
+            'html/memInfoModi.html',
         ),
     );
 });
@@ -79,7 +88,7 @@ app.get('/passModi', (req, res) => {
     res.sendFile(
         join(
             __dirname,
-            '../2-ivan-lim-community-fe/CommunityPage/html/passModi.html',
+            'html/passModi.html',
         ),
     );
 });

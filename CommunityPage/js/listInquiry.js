@@ -123,3 +123,27 @@ Promise.all([
 // // 날짜 및 시간 표기 : yyyy-mm-dd hh:mm:ss -- 게시글 작성일 끌고오기.
 
 
+const $headerProfileImg = document.querySelector('#headerProfileImg');
+const $dropdownMenu = document.querySelector('.dropdown-menu');
+$headerProfileImg.addEventListener('click', ()=>{
+    if($dropdownMenu.style.display === 'block') 
+        $dropdownMenu.style.display = 'none';
+    else
+        $dropdownMenu.style.display = 'block';
+});
+
+const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
+const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
+const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
+
+$memInfoModi.addEventListener('click', ()=>{
+    location.href = '/memInfoModi';
+});
+
+$passModi.addEventListener('click', ()=>{
+    location.href = '/passModi';
+});
+
+$logout.addEventListener('click', ()=>{
+    location.href = '/logout';
+});
