@@ -1,3 +1,5 @@
+import {duplicateNicknameChk, duplicateEmailChk} from '../apiClient.js';
+
 const $previousBtn = document.querySelector('header > button');
 
 $previousBtn.addEventListener('click', ()=>{
@@ -20,9 +22,8 @@ $fileInput.addEventListener("change", (event) => {
     const file = event.target.files[0]; // 첫 번째 파일만 가져옴
     if (file)
         $profileHelperText.style.display = 'none';
-    $fileInput.value = ""; // 선택 초기화
+    // $fileInput.value = ""; // 선택 초기화. 굳이 안해도 된다. 오히려 안해야 change 이벤트가 발생하지 않아서 이득.
 });
-
 
 
 // helper text (밀리지 않는다. 지정된 위치에서 보여짐)이메일은 영문과 @, . 만 사용이 가능함
@@ -34,7 +35,11 @@ $fileInput.addEventListener("change", (event) => {
 const $emailInput = document.querySelector('#email');
 const $eamilHelperText = document.querySelector('#email-helperText');
 
+let debounceTimeout_email;
+
 $emailInput.addEventListener('focusout', async ()=>{
+    clearTimeout(debounceTimeout_email); // 이전 타이머 제거
+
     if($emailInput.value === '') {
         $eamilHelperText.style.display = 'block';
         $eamilHelperText.textContent = '*이메일을 입력해주세요.';
@@ -43,12 +48,17 @@ $emailInput.addEventListener('focusout', async ()=>{
         $eamilHelperText.style.display = 'block';
         $eamilHelperText.textContent = '*올바른 이메일 주소 형식을 입력해주세요. (예:example@example.com)';
     }
-    else if(!await duplicateEmailChk($emailInput.value)) {
-        $eamilHelperText.style.display = 'block';
-        $eamilHelperText.textContent = '*중복된 이메일 입니다.';
-    }
-    else {
-        $eamilHelperText.style.display = 'none';
+    else
+    {
+        debounceTimeout_email = setTimeout(async () => {
+            if(await duplicateEmailChk($emailInput.value)) {
+                $eamilHelperText.style.display = 'block';
+                $eamilHelperText.textContent = '*중복된 이메일 입니다.';
+            }
+            else {
+                $eamilHelperText.style.display = 'none';
+            }
+        }, 300);
     }
 });
 
@@ -59,14 +69,6 @@ function emailValidChk(email) {
         return false; 
     else 
         return true;
-}
-
-async function duplicateEmailChk(email) {
-    const response = await fetch("/data.json");
-    const data = await response.json();
-    if(data.users.find(user => user.email === email))
-        return false;
-    return true;
 }
 
 // 비밀번호, 비밀번호 확인 유효성 : *비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.
@@ -123,7 +125,10 @@ function passwordValidChk(password) {
 const $nicknameInput = document.querySelector('#nickname');
 const $nicknameHelperText = document.querySelector('#nickname-helperText');
 
+let debounceTimeout_name;
+
 $nicknameInput.addEventListener('focusout', async ()=>{
+    clearTimeout(debounceTimeout_name); // 이전 타이머 제거
     console.log("first");
     if($nicknameInput.value === '') {
         $nicknameHelperText.style.display = 'block';
@@ -137,22 +142,19 @@ $nicknameInput.addEventListener('focusout', async ()=>{
         $nicknameHelperText.style.display = 'block';
         $nicknameHelperText.textContent = '*띄어쓰기를 없애주세요.';
     }
-    else if(!await duplicateNicknameChk($nicknameInput.value)) {
-        $nicknameHelperText.style.display = 'block';
-        $nicknameHelperText.textContent = '*중복된 닉네임 입니다.';
-    }
-    else {
-        $nicknameHelperText.style.display = 'none';
+    else
+    {
+        debounceTimeout_name = setTimeout(async () => {
+            if(await duplicateNicknameChk($nicknameInput.value)) {
+                $nicknameHelperText.style.display = 'block';
+                $nicknameHelperText.textContent = '*중복된 닉네임 입니다.';
+            }
+            else {
+                $nicknameHelperText.style.display = 'none';
+            }
+        }, 300);
     }
 });
-
-async function duplicateNicknameChk(nickname) {
-    const response = await fetch("/data.json");
-    const data = await response.json();
-    if(data.users.find(user => user.nickname === nickname))
-        return false;
-    return true;
-}
 
 // 회원가입 버튼 
 // 1번에 입력한 내용이 모두 작성되고 유효성 검사를 통과한 경우, 버튼이 활성화 된다. (  ACA0EB  > 7F6AEE  )
@@ -163,54 +165,39 @@ async function duplicateNicknameChk(nickname) {
 const $joinBtn = document.querySelector('#joinBtn');
 const $inputList = document.querySelectorAll('input');
 
-// $inputList.forEach(input => {
-//     input.addEventListener('focusout', ()=>{
-//         console.log("second");
-//         if($profileHelperText.style.display === 'none' && $eamilHelperText.style.display === 'none' && $passwordHelperText.style.display === 'none' && $passwordCheckHelperText.style.display === 'none' && $nicknameHelperText.style.display === 'none') {
-//             $joinBtn.style.backgroundColor = '#7F6AEE';
-//             $joinBtn.style.cursor = 'pointer';
-//         }
-//         else {
-//             $joinBtn.style.backgroundColor = '#ACA0EB';
-//             $joinBtn.style.cursor = 'default';
-//         }
-//     });
-// }); 딜레이 때문인지 focuscout이 두번 되어야 활성화가 됨
-
 $inputList.forEach(input => {
-    input.addEventListener('focusout', () => {
-        setTimeout(() => {
-            if ($profileHelperText.style.display === 'none' &&
-                $eamilHelperText.style.display === 'none' &&
-                $passwordHelperText.style.display === 'none' &&
-                $passwordCheckHelperText.style.display === 'none' &&
-                $nicknameHelperText.style.display === 'none') {
-                $joinBtn.style.backgroundColor = '#7F6AEE';
-                $joinBtn.style.cursor = 'pointer';
-            } else {
-                $joinBtn.style.backgroundColor = '#ACA0EB';
-                $joinBtn.style.cursor = 'default';
-            }
-        }, 0); // DOM 업데이트 이후 실행
+    input.addEventListener('focusout', ()=>{
+        console.log("second");
+        // 일단 $profileHelperText.style.display === 'none'인 조건은 뺀 상태.
+        if($eamilHelperText.style.display === 'none' && $passwordHelperText.style.display === 'none' && $passwordCheckHelperText.style.display === 'none' && $nicknameHelperText.style.display === 'none') {
+            $joinBtn.style.backgroundColor = '#7F6AEE';
+            $joinBtn.style.cursor = 'pointer';
+        }
+        else {
+            $joinBtn.style.backgroundColor = '#ACA0EB';
+            $joinBtn.style.cursor = 'default';
+        }
     });
-});
+}); 
+//위의 비동기 함수 때문인지 focuscout이 두번 되어야 활성화가 됨
 
-$fileInput.addEventListener('change', ()=>{
-    if($profileHelperText.style.display === 'none' && $eamilHelperText.style.display === 'none' && $passwordHelperText.style.display === 'none' && $passwordCheckHelperText.style.display === 'none' && $nicknameHelperText.style.display === 'none') {
-        $joinBtn.style.backgroundColor = '#7F6AEE';
-        $joinBtn.style.cursor = 'pointer';
-    }
-    else {
-        $joinBtn.style.backgroundColor = '#ACA0EB';
-        $joinBtn.style.cursor = 'default';
-    }
-}); // 근데 얘는 잘됨;;
 
-$joinBtn.addEventListener('click', (event)=>{
+// form 제출 이벤트
+const $form = document.querySelector('.mainWrap--joinForm');
+$form.addEventListener('submit', async (event)=>{
     event.preventDefault();
-    if($profileHelperText.style.display === 'none' && $eamilHelperText.style.display === 'none' && $passwordHelperText.style.display === 'none' && $passwordCheckHelperText.style.display === 'none' && $nicknameHelperText.style.display === 'none') {
-        // 회원 정보 등록.
-        window.location.href = "/listInquiry";
+    // 여기도 일단 $profileHelperText.style.display === 'none'인 조건은 뺀 상태.
+    if($eamilHelperText.style.display === 'none' && $passwordHelperText.style.display === 'none' && $passwordCheckHelperText.style.display === 'none' && $nicknameHelperText.style.display === 'none') {
+        const formData = new FormData($form); // fix 필요: 이렇게 하면 profile 사진이 formData에 들어가지 않음.
+        const response = await fetch('http://localhost:3030/api/guests/join', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(formData).toString(),
+        });
+        if (response.ok) 
+            window.location.href = "/login";
     }
     else
     {

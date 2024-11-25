@@ -12,14 +12,14 @@ app.use(
     express.static(join(__dirname, '')),
 );
 
-app.get('/data.json', (req, res) => {
-    res.sendFile(
-        join(
-            __dirname,
-            'js/data.json',
-        ),
-    );
-});
+// app.get('/data.json', (req, res) => {
+//     res.sendFile(
+//         join(
+//             __dirname,
+//             'js/data.json',
+//         ),
+//     );
+// });
 
 app.get('/login', (req, res) => {
     res.sendFile(

@@ -7,14 +7,13 @@ const $helperText = document.querySelector('.helper-text');
 let passwordBool = false;
 
 $header.addEventListener('click', function() {
-    window.location.href = '/'; // 홈 화면으로 이동
+    window.location.href = '/listInquiry'; // 홈 화면으로 이동
 });
 
 $form.addEventListener('submit', function(event) {
     event.preventDefault(); // 폼이 실제로 제출되는 것을 막음
 
-    const emailValue = $email.value
-    console.log(emailValue); // email input에 있는 값 출력
+    console.log($email.value); // email input에 있는 값 출력
     if ($email.validity.typeMismatch)
         $email.setCustomValidity("올바른 이메일 주소 형식을 입력해주세요. (예: example@example.com)");
     else if(passwordBool)
@@ -41,4 +40,16 @@ $password.addEventListener('input', function() {
         passwordBool = true;
         $helperText.style.display = 'none';
     }
+});
+
+const $inputs = document.querySelectorAll('input');
+const $submitBtn = document.querySelector('button');
+$inputs.forEach(function(input) {
+    input.addEventListener('input', function() {
+        if($email.validity.typeMismatch || !passwordBool)
+            $submitBtn.style.backgroundColor = '#ACA0EB';
+        else
+            $submitBtn.style.backgroundColor = '#7F6AEE'; 
+    }
+    );
 });

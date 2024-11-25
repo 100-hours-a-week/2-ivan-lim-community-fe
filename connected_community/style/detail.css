@@ -1,0 +1,425 @@
+body{
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #f0f0f0
+}
+
+header{
+    width: 100%;
+    height: 104px;
+
+    font-family: Sandoll GogoRound;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    text-align: center;
+
+    border-bottom: solid 1px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+header>button{
+    width: 10%;
+    text-align: center;
+    border: none;
+}
+
+header>div{
+    width: 10%;
+}
+
+
+img{
+    width: 36px;
+    height: 36px;
+    /* text-align: center; */
+}
+
+.dropdown-menu {
+    position: absolute; /* 부모 기준으로 배치 */
+    top: 40px; /* 헤더 바로 아래 */
+    /* right: 20px; 오른쪽 정렬 */
+    width: 120px; /* 드롭다운 너비 */
+    background-color: #fff; /* 배경 흰색 */
+    border: 1px solid #ccc; /* 경계선 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    z-index: 10; /* 헤더 위로 올라오도록 */
+    display: none;
+
+    background-color: #D9D9D9;
+
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+/* 드롭다운 메뉴 항목 */
+.dropdown-menu li {
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 10px 0;
+    cursor: pointer; /* 클릭 가능 */
+}
+
+.dropdown-menu li:hover {
+    background-color: #e9e9e9; /* 호버 시 배경색 */
+}
+
+/* 드롭다운 메뉴 보이기 */
+.dropdown-menu.visible {
+    display: block;
+}
+
+
+main{
+    width: 100%;
+    /* height: calc(100vh - 104px); */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainWrap{
+    width: 70%;
+    height: 95%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.mainWrap--header{
+    width: 592px;
+
+    box-sizing: border-box;
+    border-bottom: solid 1px;
+}
+
+.mainWrap--header > h2{
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 31.2px;
+    text-align: left;
+}
+
+#writer{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 19.5px;
+    text-align: left;
+}
+
+#time{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.2px;
+    text-align: right;
+}
+
+.mainWrap--header--secondBox{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainWrap--header--secondBox--info{
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.mainWrap--header--secondBox--info > span{
+    display: inline-block;
+}
+
+.optionBtn{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23.48px;
+    text-align: center;
+
+    background-color:transparent;
+
+    border-radius: 4px;
+    border-color: #ACA0EB;
+}
+
+.mainWrap--picture{
+    width: 544px;
+    height: 306px;
+
+    background-color: #D9D9D9;
+}
+
+.mainWrap--content{
+    width: 544px;
+
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.15px;
+    text-align: left;
+
+}
+
+.mainWrap--countBox{
+    width: 392px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainWrap--countBox--content{
+    width: 116px;
+    height: 77px;
+
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap:5px;
+
+    box-sizing: border-box;
+    border: solid 1px;
+    border-radius: 16px;
+    opacity: 0px;
+
+}
+
+.mainWrap--commentBox{
+    width: 592px;
+    height: 169px;
+
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    border-radius: 16px;
+}
+
+.mainWrap--commentBox > textarea{
+    width: 100%;
+    height: 60%;
+
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.15px;
+    text-align: left;
+
+    box-sizing: border-box;
+    padding: 16px;
+    border: none;
+    border-bottom: solid 1px;
+    border-radius: 16px 16px 0px 0px;
+    resize: none;
+
+    background-color: #fff;
+}
+
+.mainWrap--commentBox--btnBox{
+    height: 40%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+
+.mainWrap--commentBox--btnBox > button{
+    width: 138px;
+    height: 39px;
+    
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25.04px;
+    text-align: center;
+
+    box-sizing: border-box;
+    border: none;
+    border-radius: 16px;
+
+    background-color: #ACA0EB;
+    color: #fff;
+
+}
+
+.mainWrap--historyBox{
+    width: 544px;   
+
+    display: flex;
+    flex-direction: row;
+}
+
+.mainWrap--historyBox--leftBox{
+    width: 70%;
+}
+
+.mainWrap--historyBox--leftBox--top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.mainWrap--historyBox--leftBox--bottom > p{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.15px;
+    text-align: left;
+
+    box-sizing: border-box;
+    padding-left: 36px;
+}
+
+.comment-edit{
+    width : 100%;
+}
+
+.mainWrap--historyBox--rightBox{
+    width: 30%;
+
+    gap: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 높은 z-index 설정 */
+    position: fixed;
+    
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalContent {
+    width: 408px;
+    height: 242px;
+    gap: 22px;
+
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: white;
+}
+
+.modalContent--header{
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28.64px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.modalContent--body{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.87px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.modalContent--btnBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+}
+
+.modalContent--btnBox > button{
+    width: 127px;
+    height: 44px;
+    gap: 0px;
+    border-radius: 12px;
+
+    box-sizing: border-box;
+    border: none;
+}
+
+.modalContent--cancelBtn{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.87px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+    background-color: #242424;
+    color: #FFFFFF;
+}
+
+.modalContent--checkBtn{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.87px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+    background-color: #C4A5FA;
+    color: #000000;
+}

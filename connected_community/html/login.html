@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../style/reset.css" />
     <link rel="stylesheet" href="../style/login.css" />
-    <script src="../js/login/eventFunc.js" defer></script>
+    <script src="../js/login/login_event.js" defer></script>
     <script src="../js/login/login.js" defer></script>
 </head>
 <body>
@@ -16,12 +16,12 @@
     <main>
         <div class="mainWrap">
             <h2>로그인</h2>
-            <form class="mainWrap--loginForm" action="" method="POST">
+            <form class="mainWrap--loginForm" action="http://localhost:3030/api/guests/login" method="POST">
                 <div class="mainWrap--loginForm--formItems">
                     <label for="email">이메일</label>
-                    <input type="email" id="email" placeholder="이메일을 입력하세요." required>
+                    <input type="email" id="email" name="email" placeholder="이메일을 입력하세요." required>
                     <label for="password">비밀번호</label>
-                    <input type="password" id="password" placeholder="비밀번호를 입력하세요." required>
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." required>
                     <span class="helper-text">* 비밀번호를 입력해주세요</span>
                     <button type="submit">로그인</button>
                     <div id="joinBox">
