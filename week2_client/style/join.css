@@ -1,0 +1,171 @@
+body{
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #f0f0f0
+}
+
+header{
+    width: 100%;
+    height: 104px;
+
+    font-family: Sandoll GogoRound;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    text-align: center;
+
+    border-bottom: solid 1px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+header>button{
+    width: 10%;
+    text-align: center;
+    border: none;
+}
+
+header>div{
+    width: 10%;
+}
+
+main{
+    width: 100%;
+    /* height: 100%; */
+    height: calc(100vh - 104px);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+}
+
+.mainWrap{
+    width: 50%;
+    height: 90%;
+    /* border: solid 1px; */
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mainWrap>h2{
+    height: 5%;
+
+    font-family: Pretendard;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38.19px;
+    text-align: center;
+
+}
+
+.mainWrap--profile{
+    width: 40%;
+    /* height: 30%; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mainWrap--profile > article{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17.9px;
+    text-align: left;
+}
+
+.helper-text{
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+
+    color: #FF0000;
+}
+
+
+.profileBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    width: 120px; /* 원하는 너비 */
+    height: 120px; /* 원하는 높이 */
+    background-color: #C4C4C4;
+    border-radius: 50%; /* 둥근 모서리, 원 모양을 만듦 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; /* + 기호 크기 */
+    color: #000; /* + 기호 색상 */
+
+}
+
+.mainWrap--joinForm{
+    width: 50%;
+    height: 336px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mainWrap--joinForm > label{
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17.9px;
+    text-align: left;
+}
+
+.mainWrap--joinForm > input{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.71px;
+    text-align: left;
+
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+#joinBtn{
+    height: 33px;
+
+    box-sizing: border-box;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+
+    background-color: #ACA0EB;
+    color: #fff;
+}
+
+.mainWrap--joinForm > a{
+    margin: 0 auto;
+    text-decoration: none; /* 밑줄 제거 */
+    color: #000
+}
+
+.mainWrap--joinForm > a:visited {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.71px;
+    text-align: left;
+
+    color: #000; /* 방문한 링크 색상 */
+}
