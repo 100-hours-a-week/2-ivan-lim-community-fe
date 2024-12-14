@@ -1,11 +1,29 @@
+import {addEventInDropdown} from './function/movePage.js';
 import {renderHeaderProfileImg} from './function/render.js';
+
+const user_id = localStorage.getItem('user_id');
 
 const $header = document.querySelector('header h1');
 $header.addEventListener('click', function() {
     window.location.href = '/listInquiry'; // 홈 화면으로 이동
 });
 
-const user_id = localStorage.getItem('user_id');
+const $headerProfileImg = document.querySelector('#headerProfileImg');
+const $dropdownMenu = document.querySelector('.dropdown-menu');
+
+renderHeaderProfileImg(user_id, $headerProfileImg);
+
+
+$headerProfileImg.addEventListener('click', ()=>{
+    if($dropdownMenu.style.display === 'block') 
+        $dropdownMenu.style.display = 'none';
+    else
+        $dropdownMenu.style.display = 'block';
+});
+
+addEventInDropdown();
+
+
 
 const $previousBtn = document.querySelector('header > button');
 
@@ -106,31 +124,3 @@ $titleInput.addEventListener('input', limitTitleLength);
 $contentInput.addEventListener('input', updateButtonState);
 $submitButton.addEventListener('click', clickSubmitBtn);
 
-const $headerProfileImg = document.querySelector('#headerProfileImg');
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-
-renderHeaderProfileImg(user_id, $headerProfileImg);
-
-
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
-
-const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
-const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
-const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
-
-$memInfoModi.addEventListener('click', ()=>{
-    location.href = '/memInfoModi';
-});
-
-$passModi.addEventListener('click', ()=>{
-    location.href = '/passModi';
-});
-
-$logout.addEventListener('click', ()=>{
-    location.href = '/logout';
-});

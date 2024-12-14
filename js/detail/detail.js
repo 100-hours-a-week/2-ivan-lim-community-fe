@@ -1,4 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
+import {addEventInDropdown} from '../function/movePage.js';
 
 const $header = document.querySelector('header h1');
 $header.addEventListener('click', function() {
@@ -305,18 +306,4 @@ for (let checkBtn of $modalCheckBtns) {
 $commentInput.addEventListener("input", editCommentButtonState);
 $commentSubmitBtn.addEventListener("click", clickCommentSubmitBtn);
 
-const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
-const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
-const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
-
-$memInfoModi.addEventListener('click', ()=>{
-    location.href = '/memInfoModi';
-});
-
-$passModi.addEventListener('click', ()=>{
-    location.href = '/passModi';
-});
-
-$logout.addEventListener('click', ()=>{
-    location.href = '/logout';
-});
+addEventInDropdown(user_id);

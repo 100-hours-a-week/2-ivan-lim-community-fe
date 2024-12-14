@@ -29,6 +29,8 @@ header>h1{
 }
 
 header>button{
+    cursor: pointer;
+    
     width: 10%;
     text-align: center;
     border: none;

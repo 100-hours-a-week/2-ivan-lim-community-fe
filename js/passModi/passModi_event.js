@@ -1,4 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
+import {addEventInDropdown} from '../function/movePage.js';
 import { user_id } from './passModi.js';
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');
@@ -12,21 +13,7 @@ $headerProfileImg.addEventListener('click', ()=>{
 
 renderHeaderProfileImg(user_id, $headerProfileImg);
 
-const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
-const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
-const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
-
-$memInfoModi.addEventListener('click', ()=>{
-    location.href = '/memInfoModi';
-});
-
-$passModi.addEventListener('click', ()=>{
-    location.href = '/passModi';
-});
-
-$logout.addEventListener('click', ()=>{
-    location.href = '/logout';
-});
+addEventInDropdown();
 
 
 // 비밀번호 Input에 입력하지 않거나 유효성 검사를 통과하지 못할 경우

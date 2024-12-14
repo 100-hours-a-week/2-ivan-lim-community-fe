@@ -3,6 +3,7 @@
 import {$headerProfileImg, user_id} from './memInfoModi.js';
 import {duplicateNicknameChk} from '../function/apiClient.js';
 import {renderHeaderProfileImg} from '../function/render.js';
+import {addEventInDropdown} from '../function/movePage.js';
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
 $headerProfileImg.addEventListener('click', ()=>{
@@ -14,21 +15,7 @@ $headerProfileImg.addEventListener('click', ()=>{
 
 renderHeaderProfileImg(user_id, $headerProfileImg);
 
-const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
-const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
-const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
-
-$memInfoModi.addEventListener('click', ()=>{
-    location.href = '/memInfoModi';
-});
-
-$passModi.addEventListener('click', ()=>{
-    location.href = '/passModi';
-});
-
-$logout.addEventListener('click', ()=>{
-    location.href = '/logout';
-});
+addEventInDropdown();
 
 
 // ‘수정하기’ 버튼을 클릭했을 때 

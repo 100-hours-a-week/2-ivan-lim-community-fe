@@ -1,4 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
+import {addEventInDropdown} from '../function/movePage.js';
 import {user_id, postId} from './postEdit.js';
 const $previousBtn = document.querySelector('header > button');
 
@@ -38,21 +39,7 @@ $headerProfileImg.addEventListener('click', ()=>{
 
 renderHeaderProfileImg(user_id, $headerProfileImg);
 
-const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
-const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');
-const $logout = document.querySelector('.dropdown-menu li:nth-child(3)');
-
-$memInfoModi.addEventListener('click', ()=>{
-    location.href = '/memInfoModi';
-});
-
-$passModi.addEventListener('click', ()=>{
-    location.href = '/passModi';
-});
-
-$logout.addEventListener('click', ()=>{
-    location.href = '/logout';
-});
+addEventInDropdown();
 
 // 버튼 클릭시 api 호출하여 수정된 내용 저장
 
