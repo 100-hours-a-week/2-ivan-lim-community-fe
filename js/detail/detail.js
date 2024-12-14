@@ -267,14 +267,15 @@ async function clickCheckBtn() {
 }
 
 function editCommentButtonState() {
-    if ($commentInput.value.trim() !== '') {
+    if (user_id && $commentInput.value.trim() !== '') {
         $commentSubmitBtn.style.backgroundColor = '#7F6AEE';
     } else {
         $commentSubmitBtn.style.backgroundColor = '#ACA0EB';
     }
 }
 
-async function clickCommentSubmitBtn() { // 댓글 추가 작성
+async function clickCommentSubmitBtn(event) { // 댓글 추가 작성
+    event.preventDefault();
     if ($commentInput.value.trim() !== '') {
         const response = await fetch(`http://localhost:3030/api/comments/${postId}`, {
             method: 'POST',

@@ -2,7 +2,9 @@ import {addEventInDropdown} from './function/movePage.js';
 import {renderHeaderProfileImg} from './function/render.js';
 
 const user_id = localStorage.getItem('user_id');
-
+if(!user_id) {
+    location.href = '/login';
+}
 const $header = document.querySelector('header h1');
 $header.addEventListener('click', function() {
     window.location.href = '/listInquiry'; // 홈 화면으로 이동
