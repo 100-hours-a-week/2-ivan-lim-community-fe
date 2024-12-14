@@ -66,6 +66,20 @@ const $fileInput = document.querySelector('#fileInput');
 $profileChangeBtn.addEventListener('click', ()=>{
     $fileInput.click();
 });
+
+try{
+    const response = await fetch(`http://localhost:3030/api/users/${user_id}`);
+    if(response.ok)
+    {
+        const jsonResponse = await response.json();
+        const user = jsonResponse.data;
+        console.log(user);
+        $profileImg.src = user.profileImgPath ? `http://localhost:3030/userProfileImg/${user.profileImgPath}` : 'http://localhost:3030/userProfileImg/default.png';
+    }
+}catch(e){
+    console.error('There was a problem with your fetch operation:', error);
+}
+
 $profileImg.addEventListener('click', ()=>{
     $fileInput.click();
 });
