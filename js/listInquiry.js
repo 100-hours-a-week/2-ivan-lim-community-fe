@@ -1,12 +1,34 @@
+import {renderHeaderProfileImg} from './function/render.js';
+
+const user_id = localStorage.getItem('user_id');
+
+const $headerProfileImg = document.querySelector('#headerProfileImg');
+
+const $dropdownMenu = document.querySelector('.dropdown-menu');
+
+// headerProfileImg에 사용자 프로필 이미지 삽입
+
+
+$headerProfileImg.addEventListener('click', ()=>{
+    if($dropdownMenu.style.display === 'block') 
+        $dropdownMenu.style.display = 'none';
+    else
+        $dropdownMenu.style.display = 'block';
+});
+
+renderHeaderProfileImg(user_id, $headerProfileImg);
+
 const $writeBtn = document.querySelector('.writeBox button');
 
 $writeBtn.addEventListener('click', function() {
     window.location.href = '/addBoard'; // 홈 화면으로 이동
 });
 
-const offset = 0;
+
+
 try
 {
+  const offset = 0;
   const response = await fetch(`http://localhost:3030/api/posts?offset=${offset}&limit=10`);
   if(response.ok)
   {
@@ -62,14 +84,6 @@ async function renderPosts(posts) {
     }
   };
 
-const $headerProfileImg = document.querySelector('#headerProfileImg');
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
 
 const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
 const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');

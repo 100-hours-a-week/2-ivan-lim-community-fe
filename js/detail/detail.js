@@ -1,7 +1,20 @@
+import {renderHeaderProfileImg} from '../function/render.js';
+
 const user_id = localStorage.getItem('user_id');
 // URL에서 ?id=123과 같이 쿼리 문자열로 ID가 포함된 경우
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get('id');
+
+const $headerProfileImg = document.querySelector('#headerProfileImg');
+const $dropdownMenu = document.querySelector('.dropdown-menu');
+$headerProfileImg.addEventListener('click', ()=>{
+    if($dropdownMenu.style.display === 'block') 
+        $dropdownMenu.style.display = 'none';
+    else
+        $dropdownMenu.style.display = 'block';
+});
+
+renderHeaderProfileImg(user_id, $headerProfileImg);
 
 const $postEditBtn = document.getElementById("postEditBtn");
 const $postDeleteBtn = document.getElementById("postDeleteBtn");
@@ -286,16 +299,6 @@ for (let checkBtn of $modalCheckBtns) {
 }
 $commentInput.addEventListener("input", editCommentButtonState);
 $commentSubmitBtn.addEventListener("click", clickCommentSubmitBtn);
-
-
-const $headerProfileImg = document.querySelector('#headerProfileImg');
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
 
 const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
 const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');

@@ -1,7 +1,8 @@
 // 프로필 이미지 클릭시 드롭다운으로 클릭 가능 hover시 배경색 (E9E9E9)
 // 클릭시 각 페이지로 이동
 import {$headerProfileImg, user_id} from './memInfoModi.js';
-import {duplicateNicknameChk} from '../apiClient.js';
+import {duplicateNicknameChk} from '../function/apiClient.js';
+import {renderHeaderProfileImg} from '../function/render.js';
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
 $headerProfileImg.addEventListener('click', ()=>{
@@ -10,6 +11,8 @@ $headerProfileImg.addEventListener('click', ()=>{
     else
         $dropdownMenu.style.display = 'block';
 });
+
+renderHeaderProfileImg(user_id, $headerProfileImg);
 
 const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
 const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');

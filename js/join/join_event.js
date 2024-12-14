@@ -1,4 +1,4 @@
-import {duplicateNicknameChk, duplicateEmailChk} from '../apiClient.js';
+import {duplicateNicknameChk, duplicateEmailChk} from '../function/apiClient.js';
 
 const $previousBtn = document.querySelector('header > button');
 

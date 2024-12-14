@@ -1,3 +1,4 @@
+import {renderHeaderProfileImg} from '../function/render.js';
 import {user_id, postId} from './postEdit.js';
 const $previousBtn = document.querySelector('header > button');
 
@@ -34,6 +35,8 @@ $headerProfileImg.addEventListener('click', ()=>{
     else
         $dropdownMenu.style.display = 'block';
 });
+
+renderHeaderProfileImg(user_id, $headerProfileImg);
 
 const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
 const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');

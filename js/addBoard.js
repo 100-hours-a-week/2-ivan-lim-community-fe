@@ -1,3 +1,5 @@
+import {renderHeaderProfileImg} from './function/render.js';
+
 const user_id = localStorage.getItem('user_id');
 
 const $previousBtn = document.querySelector('header > button');
@@ -101,6 +103,10 @@ $submitButton.addEventListener('click', clickSubmitBtn);
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');
 const $dropdownMenu = document.querySelector('.dropdown-menu');
+
+renderHeaderProfileImg(user_id, $headerProfileImg);
+
+
 $headerProfileImg.addEventListener('click', ()=>{
     if($dropdownMenu.style.display === 'block') 
         $dropdownMenu.style.display = 'none';

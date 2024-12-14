@@ -1,3 +1,4 @@
+import {renderHeaderProfileImg} from '../function/render.js';
 import { user_id } from './passModi.js';
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');
@@ -8,6 +9,8 @@ $headerProfileImg.addEventListener('click', ()=>{
     else
         $dropdownMenu.style.display = 'block';
 });
+
+renderHeaderProfileImg(user_id, $headerProfileImg);
 
 const $memInfoModi = document.querySelector('.dropdown-menu li:nth-child(1)');
 const $passModi = document.querySelector('.dropdown-menu li:nth-child(2)');

@@ -26,8 +26,7 @@ async function renderPost(post) {
     $contentInput.value = post.content;
     
     const $uploadMessage = document.querySelector("#uploadMessage");
-    let imageFileName = post.image.split('/').pop();  
-    $uploadMessage.textContent = imageFileName;
+    $uploadMessage.textContent = post.imagePath ?? "이미지 없음";
 }
 
 export {user_id, postId};
