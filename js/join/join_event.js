@@ -6,6 +6,11 @@ $previousBtn.addEventListener('click', ()=>{
     window.location.href = "/listInquiry";
 });
 
+const $header = document.querySelector('header h1');
+$header.addEventListener('click', function() {
+    window.location.href = '/listInquiry'; // 홈 화면으로 이동
+});
+
 // 프로필 사진
 // 프로필 사진 업로드 안했을 시 : *프로필 사진을 추가해주세요.
 

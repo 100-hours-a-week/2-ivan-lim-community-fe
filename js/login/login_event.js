@@ -1,4 +1,8 @@
 const $header = document.querySelector('header h1');
+$header.addEventListener('click', function() {
+    window.location.href = '/listInquiry'; // 홈 화면으로 이동
+});
+
 const $form = document.querySelector('.mainWrap--loginForm');
 const $email = document.querySelector('#email');
 const $password = document.getElementById('password');
@@ -6,9 +10,7 @@ const $helperText = document.querySelector('.helper-text');
 
 let passwordBool = false;
 
-$header.addEventListener('click', function() {
-    window.location.href = '/listInquiry'; // 홈 화면으로 이동
-});
+
 
 const lottieContainer = document.getElementById('lottie-container');
 

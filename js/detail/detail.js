@@ -1,5 +1,10 @@
 import {renderHeaderProfileImg} from '../function/render.js';
 
+const $header = document.querySelector('header h1');
+$header.addEventListener('click', function() {
+    window.location.href = '/listInquiry'; // 홈 화면으로 이동
+});
+
 const user_id = localStorage.getItem('user_id');
 // URL에서 ?id=123과 같이 쿼리 문자열로 ID가 포함된 경우
 const urlParams = new URLSearchParams(window.location.search);

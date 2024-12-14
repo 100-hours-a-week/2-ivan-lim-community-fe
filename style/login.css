@@ -25,6 +25,8 @@ header{
 }
 
 header>h1{
+    cursor: pointer;
+
     font-family: Sandoll GogoRound;
     font-size: 32px;
     font-weight: 400;
