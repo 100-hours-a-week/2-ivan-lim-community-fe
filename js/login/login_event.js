@@ -10,8 +10,6 @@ const $helperText = document.querySelector('.helper-text');
 
 let passwordBool = false;
 
-
-
 const lottieContainer = document.getElementById('lottie-container');
 
 $form.addEventListener('submit', async function(event) {
@@ -56,7 +54,10 @@ $form.addEventListener('submit', async function(event) {
                 });
             }
             else
-                throw new Error('로그인 실패');
+            {
+                const jsonResponse = await response.json();
+                throw new Error(jsonResponse.message);
+            }
         }catch(error){
             console.error(error);
         }

@@ -5,12 +5,12 @@ export async function renderHeaderProfileImg(user_id, $headerProfileImg)
     {
         try{
             const response = await fetch(`http://localhost:3030/api/users/${user_id}`);
+            const responseJson = await response.json();
             if(!response.ok)
             {
                 $loginLogoutBtn.textContent = '로그인';
-                throw new Error(response.data);
+                throw new Error(responseJson.message);
             }
-            const responseJson = await response.json();
             const user = responseJson.data;
             $headerProfileImg.src = `http://localhost:3030/userProfileImg/${user.profileImgPath ?? 'default.png'}`;
         }catch(error){

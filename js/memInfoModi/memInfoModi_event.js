@@ -3,7 +3,7 @@
 import {$headerProfileImg, user_id} from './memInfoModi.js';
 import {duplicateNicknameChk} from '../function/apiClient.js';
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown} from '../function/movePage.js';
+import {addEventInDropdown} from '../function/commonFuction.js';
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
 $headerProfileImg.addEventListener('click', ()=>{
@@ -27,8 +27,6 @@ const $nicknameInput = document.querySelector('#nicknameInput');
 const $nicknameHelperText = document.querySelector('.helper-text');
 const $modiBtn = document.querySelector('#modiBtn');
 let canModi = false;
-
-let debounceTimeout;
 
 $nicknameInput.addEventListener('input', async ()=>{
     canModi = false;
@@ -85,7 +83,11 @@ $profileImg.addEventListener('click', ()=>{
 });
 
 $fileInput.addEventListener("change", (event) => {
-
+    const file = event.target.files[0];
+    $profileImg.src = URL.createObjectURL(file);
+    $profileImg.onload = () => {
+        URL.revokeObjectURL($profileImg.src); // free memory
+    };
 });
 
 
@@ -122,10 +124,10 @@ $modiBtn.addEventListener('click', async (event)=>{
                 },
                 body: new URLSearchParams(f_formData).toString()
             });
+            const f_jsonResponse = await f_response.json();
             if (!f_response.ok)
-                throw new Error(f_response.data);
+                throw new Error(f_jsonResponse.message);
             else{
-                const f_jsonResponse = await f_response.json();
                 const userId = f_jsonResponse.data.userId;
                 // 파일이 선택된 경우 추가
                 if($fileInput.files[0] === undefined)
@@ -142,7 +144,10 @@ $modiBtn.addEventListener('click', async (event)=>{
                 if(s_response.ok)
                     showToast('수정 완료');
                 else
-                    throw new Error(s_response.data);
+                {
+                    const s_responseJson = await s_response.json();
+                    throw new Error(s_responseJson.message);
+                }
             }
         }catch(e){
             console.error('There was a problem with your fetch operation:', error);
@@ -171,12 +176,15 @@ $modalCancelBtn.addEventListener('click', ()=>{
     $modal.style.display = 'none';
 });
 
-$modalCheckBtn.addEventListener('click', (event)=>{
+$modalCheckBtn.addEventListener('click', async (event)=>{
     event.preventDefault();
-    const response = fetch(`http://localhost:3030/api/users/${user_id}`, {
+    const response = await fetch(`http://localhost:3030/api/users/${user_id}`, {
         method: 'DELETE',
         credentials: 'include'
     });
     if(response.ok)
-        location.href = '/login';
+    {
+        localStorage.removeItem('user_id');
+        location.href = '/listInquiry';
+    }
 });

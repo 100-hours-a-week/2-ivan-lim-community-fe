@@ -1,5 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown} from '../function/movePage.js';
+import {addEventInDropdown} from '../function/commonFuction.js';
 import { user_id } from './passModi.js';
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');

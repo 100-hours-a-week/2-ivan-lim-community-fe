@@ -1,6 +1,6 @@
 import {renderHeaderProfileImg} from './function/render.js';
-import { addEventInDropdown } from './function/movePage.js';
-
+import { addEventInDropdown } from './function/commonFuction.js';
+import {utcToKst} from './function/commonFuction.js';
 const user_id = localStorage.getItem('user_id');
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');
@@ -46,15 +46,19 @@ try
 async function renderPosts(posts) {
   for (const post of posts) {
       const response = await fetch(`http://localhost:3030/api/users/${post.writerId}`);
-      if(!response.ok)
-        throw new Error(response.data);
-
       const responseJson = await response.json();
+      if(!response.ok)
+      {
+        throw new Error(responseJson.message);
+      }
+
       const writer = responseJson.data;
       
       // 게시글 요소 생성
       const postElement = document.createElement("div");
       postElement.classList.add("post");
+      
+      
       postElement.innerHTML = `
         <div data-id=${post.id}>
             <h3>${post.title}</h3>
@@ -65,7 +69,7 @@ async function renderPosts(posts) {
                     <span>조회수 ${post.view}</span>
                 </div>
                 <div>
-                    <span id="date">${post.date}</span>
+                    <span id="date">${utcToKst(post.date)}</span>
                 </div>
             </div>
             <div class="postWriter">

@@ -1,5 +1,6 @@
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown} from '../function/movePage.js';
+import {addEventInDropdown} from '../function/commonFuction.js';
+import {utcToKst} from '../function/commonFuction.js';
 
 const $header = document.querySelector('header h1');
 $header.addEventListener('click', function() {
@@ -69,7 +70,7 @@ async function updatePostContent(post,user) {
     $writerName.textContent = user.nickname;
 
     const $postDate = document.getElementById('time');
-    $postDate.textContent = post.date;
+    $postDate.textContent = utcToKst(post.date);
 
     const $postImage = document.querySelector('.mainWrap > img');
     $postImage.src = `http://localhost:3030/postImg/${post.imagePath ?? 'default.png'}`;
@@ -84,9 +85,9 @@ async function updatePostContent(post,user) {
     $viewCount.textContent = post.view;
     $commentCount.textContent = post.comment;
     const response = await fetch(`http://localhost:3030/api/comments/${postId}`)
-    if(!response.ok)
-        throw new Error(response.data);
     const jsonResponse = await response.json();
+    if(!response.ok)
+        throw new Error(jsonResponse.message);
     const comments = jsonResponse.data.comments;
     console.log(comments);
 
@@ -114,7 +115,7 @@ async function renderComments(comments) {
                         <img src="http://localhost:3030/userProfileImg/${user.profileImgPath ?? 'default.png'}" crossOrigin ="anonymous" alt="춘식" />
                     </span>
                     <span id="writer">${user.nickname}</span>
-                    <span id="time">${comment.date}</span>
+                    <span id="time">${utcToKst(comment.date)}</span>
                 </div>
                 <div class="mainWrap--historyBox--leftBox--bottom" id="content-${comment.id}">
                     <p>${comment.content}</p>
@@ -128,10 +129,21 @@ async function renderComments(comments) {
         $mainWrap.appendChild($historyBox);
         $editBtn = $historyBox.querySelector(`.edit-${comment.id}`);
         $deleteBtn = $historyBox.querySelector(`.delete-${comment.id}`);
-
-        // id 전달해야 함.
-        $editBtn.addEventListener('click', () => clickCommentEditBtn(comment.id));
-        $deleteBtn.addEventListener('click', () => clickCommentDeleteBtn(comment.id));
+        console.log(typeof user_id);
+        if(parseInt(user_id) === comment.writerId)
+        {
+            console.log("jackpot");
+    
+            // id 전달해야 함.
+            $editBtn.addEventListener('click', () => clickCommentEditBtn(comment.id));
+            $deleteBtn.addEventListener('click', () => clickCommentDeleteBtn(comment.id));
+        }
+        else
+        {
+            console.log("fail");
+            $editBtn.style.display = 'none';
+            $deleteBtn.style.display = 'none';
+        }
 
         function clickCommentEditBtn(commentId) {
             const $editBtn = document.querySelector(`.edit-${commentId}`);
@@ -174,15 +186,17 @@ async function renderComments(comments) {
                     });
                     if(response.ok) 
                         $commentContent.textContent = $commentEditBox.value;
+                    else
+                    {
+                        const jsonResponse = await response.json();
+                        throw new Error(jsonResponse.message);
+                    }
                 }
                 $commentEditBox.remove();
                 $saveButton.remove();
                 $commentContent.style.display = 'block';
                 $editBtn.style.display = 'inline-block';
                 $deleteBtn.style.display = 'inline-block';
-
-                if (!response.ok)
-                    throw new Error(response.data);
             }
         );
         }
@@ -259,7 +273,8 @@ async function clickCheckBtn() {
             })
         });
         if (!response.ok) {
-            throw new Error(response.data);
+            const jsonResponse = await response.json();
+            throw new Error(jsonResponse.message);
         }
         else
             window.location.reload();
@@ -289,7 +304,8 @@ async function clickCommentSubmitBtn(event) { // 댓글 추가 작성
             })
         })
         if (!response.ok) {
-            throw new Error(response.data);
+            const jsonResponse = await response.json();
+            throw new Error(jsonResponse.message);
         }
         window.location.reload();
     }

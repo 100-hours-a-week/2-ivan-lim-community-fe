@@ -1,4 +1,4 @@
-import {addEventInDropdown} from './function/movePage.js';
+import {addEventInDropdown} from './function/commonFuction.js';
 import {renderHeaderProfileImg} from './function/render.js';
 
 const user_id = localStorage.getItem('user_id');
@@ -93,7 +93,10 @@ async function clickSubmitBtn() {
                 credentials: 'include'
             });
             if (!f_response.ok)
-                throw new Error(f_response.data);
+            {
+                const f_jsonResponse = await f_response.json();
+                throw new Error(f_jsonResponse.message);
+            }
             else{
                 const f_jsonResponse = await f_response.json();
                 const postId = f_jsonResponse.data.postId;
@@ -110,7 +113,10 @@ async function clickSubmitBtn() {
                     credentials: 'include'
                 });
                 if (!s_response.ok)
-                    throw new Error(s_response.data);
+                {
+                    const s_jsonResponse = await s_response.json();
+                    throw new Error(s_jsonResponse.message);
+                }
                 else
                     window.location.href = "/listInquiry";
             }

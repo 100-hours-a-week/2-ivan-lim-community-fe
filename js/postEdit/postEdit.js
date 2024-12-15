@@ -12,9 +12,9 @@ const postId = urlParams.get('id');
 
 try{
     const response = await fetch(`http://localhost:3030/api/posts/${postId}`);
-    if(!response.ok)
-        throw new Error(response.data);
     const jsonResponse = await response.json();
+    if(!response.ok)
+        throw new Error(jsonResponse.message);
     const post = jsonResponse.data;
     console.log(post);
     renderPost(post);

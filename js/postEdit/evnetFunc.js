@@ -1,5 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown} from '../function/movePage.js';
+import {addEventInDropdown} from '../function/commonFuction.js';
 import {user_id, postId} from './postEdit.js';
 const $previousBtn = document.querySelector('header > button');
 
@@ -98,14 +98,14 @@ $submitBtn.addEventListener('click', async ()=>{
             credentials: 'include'
         });
         console.log(f_response);
+        const f_jsonResponse = await f_response.json();
         if(!f_response.ok)
         {
             console.log("PNF");
-            throw new Error(f_response.data);
+            throw new Error(f_jsonResponse.message);
         }
         else
         {
-            const f_jsonResponse = await f_response.json();
             const postId = f_jsonResponse.data.postId;
             if($fileInput.files[0] === undefined)
             {
@@ -120,7 +120,10 @@ $submitBtn.addEventListener('click', async ()=>{
                 credentials: 'include'
             });
             if (!s_response.ok)
-                throw new Error(s_response.data);
+            {
+                const s_responseJson = await s_response.json();
+                throw new Error(s_responseJson.message);
+            }
             else
                 showToast('수정 완료');
         }

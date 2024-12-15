@@ -222,7 +222,10 @@ $form.addEventListener('submit', async (event)=>{
                 if(s_response.ok)
                     window.location.href = "/listInquiry";
                 else
-                    throw new Error(s_response.data);
+                {
+                    const s_responseJson = await s_response.json();
+                    throw new Error(s_responseJson.message);
+                }
             }
         }catch(e){
             console.error(e);
