@@ -7,9 +7,6 @@ const $headerProfileImg = document.querySelector('#headerProfileImg');
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
 
-// headerProfileImg에 사용자 프로필 이미지 삽입
-
-
 $headerProfileImg.addEventListener('click', ()=>{
     if($dropdownMenu.style.display === 'block') 
         $dropdownMenu.style.display = 'none';
@@ -26,21 +23,55 @@ $writeBtn.addEventListener('click', function() {
 });
 
 
+let offset = 0;
+let isFetching = false;
+let hasMore = true;
+postListUp();
 
-try
+async function postListUp()
 {
-  const offset = 0;
-  const response = await fetch(`http://localhost:3030/api/posts?offset=${offset}&limit=10`);
-  if(response.ok)
+  try
   {
-    const responseData = await response.json();
-    const posts = responseData.data;
-    console.log(posts);
-    await renderPosts(posts);
+    isFetching = true;
+    const response = await fetch(`http://localhost:3030/api/posts?offset=${offset}&limit=10`);
+    if(response.ok)
+    {
+      const responseData = await response.json();
+      const posts = responseData.data;
+      if(posts.length === 0)
+      {
+        hasMore = false;
+        return;
+      }
+      console.log(posts);
+      // add 필요 : 로딩 중 표시 삭제
+      await renderPosts(posts);
+      isFetching = false;
+      offset += 10;
+    }
+  }catch(error){
+    console.error('There was a problem with your fetch operation:', error);
   }
-}catch(error){
-  console.error('There was a problem with your fetch operation:', error);
 }
+
+window.addEventListener('scroll', () => {
+  if (isFetching || !hasMore) {
+      return;
+  }
+
+  // 스크롤이 맨 아래에 도달하면 추가 데이터를 받아옴
+  let scrollHeight = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight,
+    document.body.clientHeight, document.documentElement.clientHeight
+  );
+
+  if (window.innerHeight + window.scrollY + 100 >= scrollHeight) // 
+  {
+    // add 필요 : 로딩 중 표시
+    postListUp();
+  }
+})
 
 // 작성자 정보를 추가하여 게시글 렌더링
 async function renderPosts(posts) {

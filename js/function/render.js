@@ -1,3 +1,4 @@
+// headerProfileImg에 사용자 프로필 이미지 삽입
 export async function renderHeaderProfileImg(user_id, $headerProfileImg)
 {
     const $loginLogoutBtn = document.querySelector('.dropdown-menu li:nth-child(3)');
