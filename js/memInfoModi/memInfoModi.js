@@ -1,5 +1,6 @@
 import { beOrigin } from '../env.js';
 
+const $nicknameInput = document.querySelector('#nicknameInput');
 const $eamil = document.querySelector('#email');
 
 let user_id = localStorage.getItem('user_id');
@@ -11,12 +12,15 @@ const response = await fetch(`${beOrigin}/api/users/${user_id}`,{
     method: 'GET',
     credentials: 'include', // 세션 쿠키를 포함
     });
+let nickname;
 if(response.ok)
 {
     const responseData = await response.json(); // JSON 형식으로 응답 데이터 파싱
     const data = responseData.data; // 응답 데이터에서 data 객체 가져오기
     user_id = data?.userId;
+    nickname = data?.nickname;
     const email = data?.email; // optional chaining으로 안전하게 접근
+    $nicknameInput.value = nickname;
     $eamil.textContent = email;
 }
 
@@ -26,4 +30,4 @@ $header.addEventListener('click', function() {
 });
 const $headerProfileImg = document.querySelector('#headerProfileImg');
 
-export { $headerProfileImg, user_id };
+export { $headerProfileImg, user_id, nickname};

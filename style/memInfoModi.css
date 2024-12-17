@@ -221,6 +221,7 @@ main{
     text-align: left;
 
     color: #FF0000;
+    display: none;
 }
 
 .mainWrap--loginForm--formItems > button{

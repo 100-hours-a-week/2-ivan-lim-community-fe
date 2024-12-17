@@ -1,6 +1,6 @@
 // 프로필 이미지 클릭시 드롭다운으로 클릭 가능 hover시 배경색 (E9E9E9)
 // 클릭시 각 페이지로 이동
-import {$headerProfileImg, user_id} from './memInfoModi.js';
+import {$headerProfileImg, user_id, nickname} from './memInfoModi.js';
 import {duplicateNicknameChk} from '../function/apiClient.js';
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
@@ -28,10 +28,20 @@ const $nicknameInput = document.querySelector('#nicknameInput');
 const $nicknameHelperText = document.querySelector('.helper-text');
 const $modiBtn = document.querySelector('#modiBtn');
 let canModi = false;
+let imgChangeState = false;
+
 
 $nicknameInput.addEventListener('input', async ()=>{
     canModi = false;
-    if($nicknameInput.value.length > 10){
+    if($nicknameInput.value.trim() === nickname)
+    {
+        $nicknameHelperText.style.display = 'none';
+        if(imgChangeState)
+            $modiBtn.style.backgroundColor = '#7F6AEE';
+        else
+            $modiBtn.style.backgroundColor = '#ACA0EB';
+    }
+    else if($nicknameInput.value.length > 10){
         $nicknameHelperText.style.display = 'block';
         $nicknameHelperText.textContent = "*닉네임은 최대 10자 까지 작성 가능합니다.";
         $modiBtn.style.backgroundColor = '#ACA0EB';
@@ -89,6 +99,8 @@ $fileInput.addEventListener("change", (event) => {
     $profileImg.onload = () => {
         URL.revokeObjectURL($profileImg.src); // free memory
     };
+    imgChangeState = true;
+    $modiBtn.style.backgroundColor = '#7F6AEE';
 });
 
 
@@ -107,15 +119,15 @@ function showToast(message) {
 
 $modiBtn.addEventListener('click', async (event)=>{
     event.preventDefault(); // 폼이 실제로 제출되는 것을 막음
-    if(canModi)
-    {
-        // 필요한 데이터가 form 밖에 있으므로 FormData 객체를 생성하여 데이터 추가하는 방법.
-        const f_formData = new FormData();
+    try{
+        if(canModi)
+        {
+            // 필요한 데이터가 form 밖에 있으므로 FormData 객체를 생성하여 데이터 추가하는 방법.
+            const f_formData = new FormData();
 
-        // 닉네임 추가
-        f_formData.append('newNickname', $nicknameInput.value);
+            // 닉네임 추가
+            f_formData.append('newNickname', $nicknameInput.value);
 
-        try{
             const f_response = await fetch(`${beOrigin}/api/users/${user_id}`, {
                 method: 'PATCH',
                 credentials: 'include', // 세션 쿠키를 포함
@@ -127,38 +139,34 @@ $modiBtn.addEventListener('click', async (event)=>{
             const f_jsonResponse = await f_response.json();
             if (!f_response.ok)
                 throw new Error(f_jsonResponse.message);
-            else{
-                // 파일이 선택된 경우 추가
-                if($fileInput.files[0] === undefined)
-                {
-                    showToast('수정 완료');
-                    return;
-                }
-                const s_formData = new FormData();
-                s_formData.append('profileImg', $fileInput.files[0]); // 실제 파일 객체 추가
-                const s_response = await fetch(`${beOrigin}/api/users/uploadImg`, {
-                    method: 'POST',
-                    credentials: 'include', // 세션 쿠키를 포함
-                    body: s_formData,
-                });
-                if(s_response.ok)
-                    showToast('수정 완료');
-                else
-                {
-                    const s_responseJson = await s_response.json();
-                    throw new Error(s_responseJson.message);
-                }
+            if($fileInput.files[0] === undefined)
+            {
+                showToast('수정 완료');
+                return;
             }
-        }catch(e){
-            console.error('There was a problem with your fetch operation:', error);
         }
-        
-        // if(response.ok)
-        //     showToast('수정 완료');
+    if(imgChangeState)
+    {
+        const s_formData = new FormData();
+        s_formData.append('profileImg', $fileInput.files[0]); // 실제 파일 객체 추가
+        const s_response = await fetch(`${beOrigin}/api/users/uploadImg`, {
+            method: 'POST',
+            credentials: 'include', // 세션 쿠키를 포함
+            body: s_formData,
+        });
+        if(s_response.ok)
+            showToast('수정 완료');
+        else
+        {
+            const s_responseJson = await s_response.json();
+            throw new Error(s_responseJson.message);
+        }
     }
-    else
-        event.preventDefault(); // 폼이 실제로 제출되는 것을 막음
-    });
+    }catch(e){
+        console.error('There was a problem with your fetch operation:', error);
+    }
+    
+});
 
 // 회원탈퇴 클릭시 회원 탈퇴 확인 모달이 나온다- 확인 클릭시 회원 탈퇴가 완료되고, 로그인페이지로 이동한다.
 
