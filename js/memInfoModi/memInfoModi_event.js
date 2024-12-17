@@ -106,10 +106,9 @@ function showToast(message) {
 };
 
 $modiBtn.addEventListener('click', async (event)=>{
+    event.preventDefault(); // 폼이 실제로 제출되는 것을 막음
     if(canModi)
     {
-        event.preventDefault(); // 폼이 실제로 제출되는 것을 막음
-
         // 필요한 데이터가 form 밖에 있으므로 FormData 객체를 생성하여 데이터 추가하는 방법.
         const f_formData = new FormData();
 
@@ -129,7 +128,6 @@ $modiBtn.addEventListener('click', async (event)=>{
             if (!f_response.ok)
                 throw new Error(f_jsonResponse.message);
             else{
-                const userId = f_jsonResponse.data.userId;
                 // 파일이 선택된 경우 추가
                 if($fileInput.files[0] === undefined)
                 {
@@ -138,8 +136,9 @@ $modiBtn.addEventListener('click', async (event)=>{
                 }
                 const s_formData = new FormData();
                 s_formData.append('profileImg', $fileInput.files[0]); // 실제 파일 객체 추가
-                const s_response = await fetch(`${beOrigin}/api/users/uploadImg/${userId}`, {
+                const s_response = await fetch(`${beOrigin}/api/users/uploadImg`, {
                     method: 'POST',
+                    credentials: 'include', // 세션 쿠키를 포함
                     body: s_formData,
                 });
                 if(s_response.ok)

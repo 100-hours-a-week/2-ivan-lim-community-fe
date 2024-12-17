@@ -216,8 +216,9 @@ $form.addEventListener('submit', async (event)=>{
                 }
                 const s_formData = new FormData();
                 s_formData.append('profileImg', $fileInput.files[0]);
-                const s_response = await fetch(`${beOrigin}/api/users/uploadImg/${userId}`, {
+                const s_response = await fetch(`${beOrigin}/api/users/uploadImg`, {
                     method: 'POST',
+                    credentials: 'include',
                     body: s_formData,
                 });
                 if(s_response.ok)
