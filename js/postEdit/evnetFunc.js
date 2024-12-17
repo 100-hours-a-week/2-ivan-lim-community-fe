@@ -1,6 +1,6 @@
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
-import {user_id, postId} from './postEdit.js';
+import {user_id, postId, post} from './postEdit.js';
 import { beOrigin } from '../env.js';
 
 const $previousBtn = document.querySelector('header > button');
@@ -51,7 +51,7 @@ const $contentInput = document.querySelector(".mainBody--content > textarea");
 
 $mainBody.addEventListener('input', ()=>{
 
-    if($titleInput.value.trim() && $contentInput.value.trim())
+    if($titleInput.value.trim() && $contentInput.value.trim() && ($titleInput.value.trim() !== post.title || $contentInput.value.trim() !== post.content))
         $submitBtn.style.backgroundColor = '#7F6AEE';
     else
         $submitBtn.style.backgroundColor = '#ACA0EB';
@@ -73,14 +73,19 @@ function showToast(message) {
     }, 3000); // 3초 후 사라짐
 };
 
+const $helperText = document.getElementById('helper-text');
 $submitBtn.addEventListener('click', async ()=>{
     // 둘 중 하나라도 내용이 없으면 제출X
     console.log("click");
     if(!$titleInput.value.trim() || !$contentInput.value.trim())
     {
         console.log("trim");
+        $helperText.textContent = "*제목, 내용을 모두 작성해주세요.";
+        $helperText.style.display = 'block';
         return;
     }
+    else if($titleInput.value.trim() === post.title && $contentInput.value.trim() === post.content)
+        return
     console.log("not trim")
 
     const f_formData = new FormData();

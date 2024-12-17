@@ -12,12 +12,13 @@ if(!user_id)
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get('id');
 
+let post;
 try{
     const response = await fetch(`${beOrigin}/api/posts/${postId}`);
     const jsonResponse = await response.json();
     if(!response.ok)
         throw new Error(jsonResponse.message);
-    const post = jsonResponse.data;
+    post = jsonResponse.data;
     console.log(post);
     renderPost(post);
 }catch(error){
@@ -36,4 +37,4 @@ async function renderPost(post) {
     $uploadMessage.textContent = post.imagePath ?? "이미지 없음";
 }
 
-export {user_id, postId};
+export {user_id, postId, post};
