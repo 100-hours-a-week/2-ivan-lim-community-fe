@@ -1,3 +1,5 @@
+import { beOrigin } from '../env.js';
+
 const $header = document.querySelector('header h1');
 $header.addEventListener('click', function() {
     window.location.href = '/listInquiry'; // 홈 화면으로 이동
@@ -11,7 +13,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get('id');
 
 try{
-    const response = await fetch(`http://localhost:3030/api/posts/${postId}`);
+    const response = await fetch(`${beOrigin}/api/posts/${postId}`);
     const jsonResponse = await response.json();
     if(!response.ok)
         throw new Error(jsonResponse.message);

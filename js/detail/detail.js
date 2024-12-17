@@ -1,6 +1,7 @@
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
 import {utcToKst} from '../function/commonFuction.js';
+import { beOrigin } from '../env.js';
 
 const $header = document.querySelector('header h1');
 $header.addEventListener('click', function() {
@@ -32,7 +33,7 @@ try{
     let response;
     let jsonResponse;
 
-    response = await fetch(`http://localhost:3030/api/posts/permissionCheck/${postId}`,{
+    response = await fetch(`${beOrigin}/api/posts/permissionCheck/${postId}`,{
         method: 'GET',
         credentials: 'include', // 세션 쿠키를 포함
         });
@@ -42,12 +43,12 @@ try{
         $postDeleteBtn.style.display = 'none';
     }
 
-    response = await fetch(`http://localhost:3030/api/posts/${postId}`)
+    response = await fetch(`${beOrigin}/api/posts/${postId}`)
     jsonResponse = await response.json();
     const post = jsonResponse.data;
     console.log(post);
     
-    response = await fetch(`http://localhost:3030/api/users/${post.writerId}`)
+    response = await fetch(`${beOrigin}/api/users/${post.writerId}`)
     jsonResponse = await response.json();
     const user = jsonResponse.data;
     console.log(user);
@@ -63,7 +64,7 @@ async function updatePostContent(post,user) {
     $title.textContent = post.title;
 
     const $profileImage = document.querySelector('.mainWrap--header img');
-    $profileImage.src = user.profileImgPath ? `http://localhost:3030/userProfileImg/${user.profileImgPath}` : 'http://localhost:3030/userProfileImg/default.png';
+    $profileImage.src = user.profileImgPath ? `${beOrigin}/userProfileImg/${user.profileImgPath}` : `${beOrigin}/userProfileImg/default.png`;
     console.log("user.profileImgPath: ", user.profileImgPath);
 
     const $writerName = document.getElementById('writer');
@@ -73,7 +74,7 @@ async function updatePostContent(post,user) {
     $postDate.textContent = utcToKst(post.date);
 
     const $postImage = document.querySelector('.mainWrap > img');
-    $postImage.src = `http://localhost:3030/postImg/${post.imagePath ?? 'default.png'}`;
+    $postImage.src = `${beOrigin}/postImg/${post.imagePath ?? 'default.png'}`;
 
     const $postContent = document.querySelector('.mainWrap--content > p');
     $postContent.textContent = post.content;
@@ -84,7 +85,7 @@ async function updatePostContent(post,user) {
     $likeCount.textContent = post.like;
     $viewCount.textContent = post.view;
     $commentCount.textContent = post.comment;
-    const response = await fetch(`http://localhost:3030/api/comments/${postId}`)
+    const response = await fetch(`${beOrigin}/api/comments/${postId}`)
     const jsonResponse = await response.json();
     if(!response.ok)
         throw new Error(jsonResponse.message);
@@ -102,7 +103,7 @@ async function renderComments(comments) {
 
     comments = comments.slice().reverse();
     for (let comment of comments) {
-        const response = await fetch(`http://localhost:3030/api/users/${comment.writerId}`);
+        const response = await fetch(`${beOrigin}/api/users/${comment.writerId}`);
         const jsonResponse = await response.json();
         const user = jsonResponse.data;
         console.log(user);
@@ -112,7 +113,7 @@ async function renderComments(comments) {
             <div class="mainWrap--historyBox--leftBox">
                 <div class="mainWrap--historyBox--leftBox--top">
                     <span>
-                        <img src="http://localhost:3030/userProfileImg/${user.profileImgPath ?? 'default.png'}" crossOrigin ="anonymous" alt="춘식" />
+                        <img src="${beOrigin}/userProfileImg/${user.profileImgPath ?? 'default.png'}" crossOrigin ="anonymous" alt="춘식" />
                     </span>
                     <span id="writer">${user.nickname}</span>
                     <span id="time">${utcToKst(comment.date)}</span>
@@ -173,7 +174,7 @@ async function renderComments(comments) {
             $saveButton.addEventListener('click', async () => {
                 let response;
                 if($commentEditBox.value.trim() !== '') {
-                    response = await fetch(`http://localhost:3030/api/comments/${commentId}`, { // 댓글 수정
+                    response = await fetch(`${beOrigin}/api/comments/${commentId}`, { // 댓글 수정
                         method: 'PATCH',
                         credentials: 'include',
                         headers: {
@@ -245,7 +246,7 @@ function clickCancelBtn() {
 
 async function clickCheckBtn() {
     if(modalType === PostModal) { // 게시글 삭제
-        fetch(`http://localhost:3030/api/posts/${postId}`, {
+        fetch(`${beOrigin}/api/posts/${postId}`, {
             method: 'DELETE',
             credentials: 'include',
             headers: {
@@ -262,7 +263,7 @@ async function clickCheckBtn() {
             });
         }
     else if(modalType === CommentModal) { // 댓글 삭제
-        const response = await fetch(`http://localhost:3030/api/comments/${selectedCommentId}`, {
+        const response = await fetch(`${beOrigin}/api/comments/${selectedCommentId}`, {
             method: 'DELETE',
             credentials: 'include',
             headers: {
@@ -292,7 +293,7 @@ function editCommentButtonState() {
 async function clickCommentSubmitBtn(event) { // 댓글 추가 작성
     event.preventDefault();
     if ($commentInput.value.trim() !== '') {
-        const response = await fetch(`http://localhost:3030/api/comments/${postId}`, {
+        const response = await fetch(`${beOrigin}/api/comments/${postId}`, {
             method: 'POST',
             credentials: 'include', // 쿠키를 포함하도록 설정
             headers: {

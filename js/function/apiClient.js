@@ -1,5 +1,7 @@
+import { beOrigin } from '../env.js';
+
 async function duplicateNicknameChk(nickname) {
-    const response = await fetch(`http://localhost:3030/api/users/nickname?nickname=${nickname}`);
+    const response = await fetch(`${beOrigin}/api/users/nickname?nickname=${nickname}`);
     try{
         if(response.ok)
         {
@@ -15,7 +17,7 @@ async function duplicateNicknameChk(nickname) {
 }
 
 async function duplicateEmailChk(email) {
-    const response = await fetch("http://localhost:3030/api/users/email?email=" + email);
+    const response = await fetch(`${beOrigin}/api/users/email?email=${email}`);
     try{
         if(response.ok)
         {

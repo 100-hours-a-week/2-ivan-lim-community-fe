@@ -1,6 +1,8 @@
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
 import {user_id, postId} from './postEdit.js';
+import { beOrigin } from '../env.js';
+
 const $previousBtn = document.querySelector('header > button');
 
 $previousBtn.addEventListener('click', ()=>{
@@ -89,7 +91,7 @@ $submitBtn.addEventListener('click', async ()=>{
     console.log("before fetch");
     
     try{
-        const f_response = await fetch(`http://localhost:3030/api/posts/${postId}`, {
+        const f_response = await fetch(`${beOrigin}/api/posts/${postId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -114,7 +116,7 @@ $submitBtn.addEventListener('click', async ()=>{
             }
             const s_formData = new FormData();
             s_formData.append('postImg', $fileInput.files[0]); // 파일 추가
-            const s_response = await fetch(`http://localhost:3030/api/posts/uploadImg/${postId}`, {
+            const s_response = await fetch(`${beOrigin}/api/posts/uploadImg/${postId}`, {
                 method: 'POST',
                 body: s_formData,
                 credentials: 'include'

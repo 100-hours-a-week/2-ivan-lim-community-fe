@@ -1,3 +1,6 @@
+import { beOrigin } from '../env.js';
+
+console.log(beOrigin);
 const $header = document.querySelector('header h1');
 $header.addEventListener('click', function() {
     window.location.href = '/listInquiry'; // 홈 화면으로 이동
@@ -24,7 +27,7 @@ $form.addEventListener('submit', async function(event) {
         const formData = new FormData(form);
         
         try{
-            const response = await fetch('http://localhost:3030/api/guests/login', {
+            const response = await fetch(`${beOrigin}/api/guests/login`, {
                 method: 'POST',
                 credentials: 'include', // 쿠키를 포함하도록 설정
                 headers: {

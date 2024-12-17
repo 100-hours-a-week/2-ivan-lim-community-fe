@@ -1,4 +1,5 @@
 import {duplicateNicknameChk, duplicateEmailChk} from '../function/apiClient.js';
+import { beOrigin } from '../env.js';
 
 const $previousBtn = document.querySelector('header > button');
 
@@ -195,7 +196,7 @@ $form.addEventListener('submit', async (event)=>{
     if($eamilHelperText.style.display === 'none' && $passwordHelperText.style.display === 'none' && $passwordCheckHelperText.style.display === 'none' && $nicknameHelperText.style.display === 'none') {
         const f_formData = new FormData($form);
         try{
-            const f_response = await fetch('http://localhost:3030/api/guests/join', {
+            const f_response = await fetch(`${beOrigin}/api/guests/join`, {
                 method: 'POST',
                 credentials: 'include', // 쿠키를 받을 수 있도록 설정
                 headers: {
@@ -215,7 +216,7 @@ $form.addEventListener('submit', async (event)=>{
                 }
                 const s_formData = new FormData();
                 s_formData.append('profileImg', $fileInput.files[0]);
-                const s_response = await fetch(`http://localhost:3030/api/users/uploadImg/${userId}`, {
+                const s_response = await fetch(`${beOrigin}/api/users/uploadImg/${userId}`, {
                     method: 'POST',
                     body: s_formData,
                 });

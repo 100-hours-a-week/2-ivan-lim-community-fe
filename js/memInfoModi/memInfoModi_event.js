@@ -4,6 +4,7 @@ import {$headerProfileImg, user_id} from './memInfoModi.js';
 import {duplicateNicknameChk} from '../function/apiClient.js';
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
+import { beOrigin } from '../env.js';
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
 $headerProfileImg.addEventListener('click', ()=>{
@@ -66,13 +67,13 @@ $profileChangeBtn.addEventListener('click', ()=>{
 });
 
 try{
-    const response = await fetch(`http://localhost:3030/api/users/${user_id}`);
+    const response = await fetch(`${beOrigin}/api/users/${user_id}`);
     if(response.ok)
     {
         const jsonResponse = await response.json();
         const user = jsonResponse.data;
         console.log(user);
-        $profileImg.src = user.profileImgPath ? `http://localhost:3030/userProfileImg/${user.profileImgPath}` : 'http://localhost:3030/userProfileImg/default.png';
+        $profileImg.src = user.profileImgPath ? `${beOrigin}/userProfileImg/${user.profileImgPath}` : `${beOrigin}/userProfileImg/default.png`;
     }
 }catch(e){
     console.error('There was a problem with your fetch operation:', error);
@@ -116,7 +117,7 @@ $modiBtn.addEventListener('click', async (event)=>{
         f_formData.append('newNickname', $nicknameInput.value);
 
         try{
-            const f_response = await fetch(`http://localhost:3030/api/users/${user_id}`, {
+            const f_response = await fetch(`${beOrigin}/api/users/${user_id}`, {
                 method: 'PATCH',
                 credentials: 'include', // 세션 쿠키를 포함
                 headers: {
@@ -137,7 +138,7 @@ $modiBtn.addEventListener('click', async (event)=>{
                 }
                 const s_formData = new FormData();
                 s_formData.append('profileImg', $fileInput.files[0]); // 실제 파일 객체 추가
-                const s_response = await fetch(`http://localhost:3030/api/users/uploadImg/${userId}`, {
+                const s_response = await fetch(`${beOrigin}/api/users/uploadImg/${userId}`, {
                     method: 'POST',
                     body: s_formData,
                 });
@@ -178,7 +179,7 @@ $modalCancelBtn.addEventListener('click', ()=>{
 
 $modalCheckBtn.addEventListener('click', async (event)=>{
     event.preventDefault();
-    const response = await fetch(`http://localhost:3030/api/users/${user_id}`, {
+    const response = await fetch(`${beOrigin}/api/users/${user_id}`, {
         method: 'DELETE',
         credentials: 'include'
     });

@@ -1,6 +1,7 @@
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
 import { user_id } from './passModi.js';
+import { beOrigin } from '../env.js';
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');
 const $dropdownMenu = document.querySelector('.dropdown-menu');
@@ -97,7 +98,7 @@ $inputs.forEach(input => {
 $submitBtn.addEventListener('click', async function(event) {
     event.preventDefault();
     if($pwHelperText.style.display === 'none' && $pwChkHelperText.style.display === 'none') {
-        const response = await fetch(`http://localhost:3030/api/users/${user_id}/password`,{
+        const response = await fetch(`${beOrigin}/api/users/${user_id}/password`,{
             method: 'PATCH',
             credentials: 'include', // 세션 쿠키를 포함
             headers: {

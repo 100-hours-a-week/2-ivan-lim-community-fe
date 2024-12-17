@@ -2,7 +2,7 @@ import {renderHeaderProfileImg} from './function/render.js';
 import { addEventInDropdown } from './function/commonFuction.js';
 import {utcToKst} from './function/commonFuction.js';
 import { beOrigin } from './env.js';
-
+console.log(beOrigin);
 const user_id = localStorage.getItem('user_id');
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');
@@ -86,7 +86,6 @@ async function renderPosts(posts) {
       }
 
       const writer = responseJson.data;
-      
       // 게시글 요소 생성
       const postElement = document.createElement("div");
       postElement.classList.add("post");

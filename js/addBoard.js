@@ -1,5 +1,6 @@
 import {addEventInDropdown} from './function/commonFuction.js';
 import {renderHeaderProfileImg} from './function/render.js';
+import { beOrigin } from './env.js';
 
 const user_id = localStorage.getItem('user_id');
 if(!user_id) {
@@ -84,7 +85,7 @@ async function clickSubmitBtn() {
         f_formData.append('date', new Date().toISOString());
 
         try {
-            const f_response = await fetch('http://localhost:3030/api/posts', {
+            const f_response = await fetch(`${beOrigin}/api/posts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -107,7 +108,7 @@ async function clickSubmitBtn() {
                 }
                 const s_formData = new FormData();
                 s_formData.append('postImg', $fileInput.files[0]);
-                const s_response = await fetch(`http://localhost:3030/api/posts/uploadImg/${postId}`, {
+                const s_response = await fetch(`${beOrigin}/api/posts/uploadImg/${postId}`, {
                     method: 'POST',
                     body: s_formData,
                     credentials: 'include'

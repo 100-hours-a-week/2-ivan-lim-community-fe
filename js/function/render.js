@@ -1,3 +1,5 @@
+import { beOrigin } from '../env.js';
+
 // headerProfileImg에 사용자 프로필 이미지 삽입
 export async function renderHeaderProfileImg(user_id, $headerProfileImg)
 {
@@ -5,7 +7,7 @@ export async function renderHeaderProfileImg(user_id, $headerProfileImg)
     if(user_id)
     {
         try{
-            const response = await fetch(`http://localhost:3030/api/users/${user_id}`);
+            const response = await fetch(`${beOrigin}/api/users/${user_id}`);
             const responseJson = await response.json();
             if(!response.ok)
             {
@@ -13,7 +15,7 @@ export async function renderHeaderProfileImg(user_id, $headerProfileImg)
                 throw new Error(responseJson.message);
             }
             const user = responseJson.data;
-            $headerProfileImg.src = `http://localhost:3030/userProfileImg/${user.profileImgPath ?? 'default.png'}`;
+            $headerProfileImg.src = `${beOrigin}/userProfileImg/${user.profileImgPath ?? 'default.png'}`;
         }catch(error){
         console.error('There was a problem with your fetch operation:', error);
         }  

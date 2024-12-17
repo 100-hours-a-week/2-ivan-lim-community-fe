@@ -1,3 +1,5 @@
+import { beOrigin } from '../env.js';
+
 export function addEventInHeader() {
     const $header = document.querySelector('header h1');
     $header.addEventListener('click', function() {
@@ -23,7 +25,7 @@ export function addEventInDropdown() {
             location.href = '/login';
         else if($loginLogoutBtn.textContent === '로그아웃')
         {
-            const response = fetch('http://localhost:3030/api/users/logout',{
+            const response = fetch('${beOrigin}/api/users/logout',{
                 method: 'POST',
                 credentials: 'include', // 세션 쿠키를 포함
             });

@@ -1,3 +1,5 @@
+import { beOrigin } from '../env.js';
+
 const $eamil = document.querySelector('#email');
 
 const user_id = localStorage.getItem('user_id');
@@ -5,7 +7,7 @@ if(!user_id) {
     location.href = '/login';
 }
 
-const response = await fetch(`http://localhost:3030/api/users/${user_id}`,{
+const response = await fetch(`${beOrigin}/api/users/${user_id}`,{
     method: 'GET',
     credentials: 'include', // 세션 쿠키를 포함
     });
