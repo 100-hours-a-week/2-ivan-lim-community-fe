@@ -1,6 +1,8 @@
 import {renderHeaderProfileImg} from './function/render.js';
 import { addEventInDropdown } from './function/commonFuction.js';
 import {utcToKst} from './function/commonFuction.js';
+import { beOrigin } from './env.js';
+
 const user_id = localStorage.getItem('user_id');
 
 const $headerProfileImg = document.querySelector('#headerProfileImg');
@@ -33,7 +35,7 @@ async function postListUp()
   try
   {
     isFetching = true;
-    const response = await fetch(`http://localhost:3030/api/posts?offset=${offset}&limit=10`);
+    const response = await fetch(`${beOrigin}/api/posts?offset=${offset}&limit=10`);
     if(response.ok)
     {
       const responseData = await response.json();
@@ -76,7 +78,7 @@ window.addEventListener('scroll', () => {
 // 작성자 정보를 추가하여 게시글 렌더링
 async function renderPosts(posts) {
   for (const post of posts) {
-      const response = await fetch(`http://localhost:3030/api/users/${post.writerId}`);
+      const response = await fetch(`${beOrigin}/api/users/${post.writerId}`);
       const responseJson = await response.json();
       if(!response.ok)
       {
@@ -104,7 +106,7 @@ async function renderPosts(posts) {
                 </div>
             </div>
             <div class="postWriter">
-                <img src="http://localhost:3030/userProfileImg/${writer.profileImgPath ?? 'default.png'}" alt="${writer ? writer.nickname : 'Unknown'}" />
+                <img src="${beOrigin}/userProfileImg/${writer.profileImgPath ?? 'default.png'}" alt="${writer ? writer.nickname : 'Unknown'}" />
                 <span>${writer ? writer.nickname : 'Unknown'}</span>
             </div>
         </div>

@@ -1,0 +1,1 @@
+export const beOrigin = 'http://localhost:3030';
