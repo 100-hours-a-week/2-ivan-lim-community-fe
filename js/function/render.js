@@ -4,6 +4,7 @@ import { beOrigin } from '../env.js';
 export async function renderHeaderProfileImg(user_id, $headerProfileImg)
 {
     const $loginLogoutBtn = document.querySelector('.dropdown-menu li:nth-child(3)');
+    $headerProfileImg.src = `${beOrigin}/userProfileImg/default.png`;
     if(user_id)
     {
         try{
