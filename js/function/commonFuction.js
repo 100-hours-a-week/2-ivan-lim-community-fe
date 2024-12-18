@@ -20,17 +20,21 @@ export function addEventInDropdown() {
         location.href = '/passModi';
     });
     
-    $loginLogoutBtn.addEventListener('click', ()=>{
+    $loginLogoutBtn.addEventListener('click', async ()=>{
         if($loginLogoutBtn.textContent === '로그인')
             location.href = '/login';
         else if($loginLogoutBtn.textContent === '로그아웃')
         {
-            const response = fetch('${beOrigin}/api/users/logout',{
+            const response = await fetch(`${beOrigin}/api/users/logout`,{
                 method: 'POST',
                 credentials: 'include', // 세션 쿠키를 포함
             });
-            localStorage.removeItem('user_id');
-            location.href = '/listInquiry';
+            if(!response.ok)
+                throw new Error('로그아웃에 실패했습니다.');
+            else{
+                localStorage.removeItem('user_id');
+                location.href = '/listInquiry';
+            }
         }
     });
 }
