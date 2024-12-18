@@ -197,6 +197,10 @@ main{
 
 }
 
+.mainWrap--content > p{
+    word-wrap: break-word;
+}
+
 .mainWrap--countBox{
     width: 392px;
 
