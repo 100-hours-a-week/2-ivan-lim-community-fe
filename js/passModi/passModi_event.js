@@ -1,5 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown} from '../function/commonFuction.js';
+import {addEventInDropdown, showToast} from '../function/commonFuction.js';
 import { user_id } from './passModi.js';
 import { beOrigin } from '../env.js';
 
@@ -70,7 +70,6 @@ $passwordCheckInput.addEventListener('input', function() {
 
 const $inputs = document.querySelectorAll('input');
 const $submitBtn = document.querySelector('#submitBtn');
-const $toast = document.querySelector('.toast');
 
 function allInputValidChk() {
     if($pwHelperText.style.display === 'none' && $pwChkHelperText.style.display === 'none') {
@@ -80,16 +79,6 @@ function allInputValidChk() {
         $submitBtn.style.backgroundColor = '#ACA0EB';
     }
 }
-
-function showToast(message) {
-    toastMessage.textContent = message;
-    toastMessage.classList.add('show');
-
-    // 일정 시간 후 토스트 메시지 숨기기
-    setTimeout(() => {
-        toastMessage.classList.remove('show');
-    }, 3000); // 3초 후 사라짐
-};
 
 $inputs.forEach(input => {
     input.addEventListener('input', allInputValidChk);

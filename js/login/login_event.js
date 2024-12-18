@@ -1,4 +1,5 @@
 import { beOrigin } from '../env.js';
+import { showToast } from '../function/commonFuction.js';
 
 console.log(beOrigin);
 const $header = document.querySelector('header h1');
@@ -59,6 +60,7 @@ $form.addEventListener('submit', async function(event) {
             else
             {
                 const jsonResponse = await response.json();
+                showToast(jsonResponse.message);
                 throw new Error(jsonResponse.message);
             }
         }catch(error){

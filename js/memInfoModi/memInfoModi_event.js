@@ -3,7 +3,7 @@
 import {$headerProfileImg, user_id, nickname} from './memInfoModi.js';
 import {duplicateNicknameChk} from '../function/apiClient.js';
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown} from '../function/commonFuction.js';
+import {addEventInDropdown, showToast} from '../function/commonFuction.js';
 import { beOrigin } from '../env.js';
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
@@ -106,17 +106,6 @@ $fileInput.addEventListener("change", (event) => {
 
 // ‘수정하기’ 클릭시
 // 수정 성공하면 ‘수정 완료'라는 토스트메시지가 보여진다.
-
-function showToast(message) {
-    toastMessage.textContent = message;
-    toastMessage.classList.add('show');
-
-    // 일정 시간 후 토스트 메시지 숨기기
-    setTimeout(() => {
-        toastMessage.classList.remove('show');
-    }, 3000); // 3초 후 사라짐
-};
-
 $modiBtn.addEventListener('click', async (event)=>{
     event.preventDefault(); // 폼이 실제로 제출되는 것을 막음
     try{

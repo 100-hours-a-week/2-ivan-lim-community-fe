@@ -1,5 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown} from '../function/commonFuction.js';
+import {addEventInDropdown, showToast} from '../function/commonFuction.js';
 import {user_id, postId, post} from './postEdit.js';
 import { beOrigin } from '../env.js';
 
@@ -58,22 +58,11 @@ $mainBody.addEventListener('input', ()=>{
 });
 
 
-const $submitBtn = document.querySelector('.mainBody--submit--btn');
-
 // ‘수정하기’ 클릭시
 // 수정 성공하면 ‘수정 완료'라는 토스트메시지가 보여진다.
-
-function showToast(message) {
-    toastMessage.textContent = message;
-    toastMessage.classList.add('show');
-
-    // 일정 시간 후 토스트 메시지 숨기기
-    setTimeout(() => {
-        toastMessage.classList.remove('show');
-    }, 3000); // 3초 후 사라짐
-};
-
+const $submitBtn = document.querySelector('.mainBody--submit--btn');
 const $helperText = document.getElementById('helper-text');
+
 $submitBtn.addEventListener('click', async ()=>{
     // 둘 중 하나라도 내용이 없으면 제출X
     console.log("click");

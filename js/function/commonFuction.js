@@ -53,3 +53,16 @@ export function utcToKst(stringDate)
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     return formattedDate;
 }
+
+
+export function showToast(message) {
+    const toastMessage = document.querySelector('#toastMessage');
+
+    toastMessage.textContent = message;
+    toastMessage.classList.add('show');
+
+    // 일정 시간 후 토스트 메시지 숨기기
+    setTimeout(() => {
+        toastMessage.classList.remove('show');
+    }, 3000); // 3초 후 사라짐
+};
