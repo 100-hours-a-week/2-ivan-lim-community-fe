@@ -1,3 +1,4 @@
+import {clickLikeBox} from './detail_function.js';
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
 import {utcToKst} from '../function/commonFuction.js';
@@ -85,6 +86,11 @@ async function updatePostContent(post,user) {
     $likeCount.textContent = post.like;
     $viewCount.textContent = post.view;
     $commentCount.textContent = post.comment;
+
+    const $likeBox = document.querySelector('.mainWrap--countBox--content:first-of-type');
+    $likeBox.dataset.liked = 'false'; // fix 필요: 나중에는 db보고 true/false 설정
+    $likeBox.addEventListener('click', (event) => clickLikeBox(event, $likeCount));
+
     const response = await fetch(`${beOrigin}/api/comments/${postId}`)
     const jsonResponse = await response.json();
     if(!response.ok)

@@ -234,6 +234,17 @@ main{
 
 }
 
+.mainWrap--countBox--content:first-of-type {
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer; /* 마우스 커서를 손가락 모양으로 변경 */
+}
+
+.mainWrap--countBox--content:first-of-type:hover {
+    filter: brightness(0.9); /* 명암을 약간 어둡게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+    transform: scale(1.02); /* 약간 확대되는 효과 */
+}
+
 .mainWrap--commentBox{
     width: 592px;
     height: 169px;
