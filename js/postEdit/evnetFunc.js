@@ -26,6 +26,7 @@ $fileInput.addEventListener("change", (event) => {
     // $fileInput.value = ""; // 선택 초기화. 굳이 안해도 된다. 오히려 안해야 change 이벤트가 발생하지 않아서 이득.
 
     $uploadMessage.textContent = file.name;
+    $submitBtn.style.backgroundColor = '#7F6AEE';
 });
 
 // 프로필 이미지 클릭시 드롭다운으로 클릭 가능. 클릭시 각 페이지로 이동. 
@@ -66,48 +67,47 @@ const $helperText = document.getElementById('helper-text');
 $submitBtn.addEventListener('click', async ()=>{
     // 둘 중 하나라도 내용이 없으면 제출X
     console.log("click");
-    if(!$titleInput.value.trim() || !$contentInput.value.trim())
-    {
-        console.log("trim");
-        $helperText.textContent = "*제목, 내용을 모두 작성해주세요.";
-        $helperText.style.display = 'block';
-        return;
-    }
-    else if($titleInput.value.trim() === post.title && $contentInput.value.trim() === post.content)
-        return
-    console.log("not trim")
-
-    const f_formData = new FormData();
-    f_formData.append('writerId',user_id);
-    f_formData.append('newTitle', $titleInput.value);
-    f_formData.append('newContent', $contentInput.value);
-
-    console.log("before fetch");
-    
     try{
-        const f_response = await fetch(`${beOrigin}/api/posts/${postId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams(f_formData).toString(),
-            credentials: 'include'
-        });
-        console.log(f_response);
-        const f_jsonResponse = await f_response.json();
-        if(!f_response.ok)
+        if(!$titleInput.value.trim() || !$contentInput.value.trim())
         {
-            console.log("PNF");
-            throw new Error(f_jsonResponse.message);
+            console.log("trim");
+            $helperText.textContent = "*제목, 내용을 모두 작성해주세요.";
+            $helperText.style.display = 'block';
+            return;
         }
-        else
+        else if($titleInput.value.trim() !== post.title || $contentInput.value.trim() !== post.content)
         {
-            const postId = f_jsonResponse.data.postId;
+            const f_formData = new FormData();
+            f_formData.append('writerId',user_id);
+            f_formData.append('newTitle', $titleInput.value);
+            f_formData.append('newContent', $contentInput.value);
+
+            console.log("before fetch");
+            
+            const f_response = await fetch(`${beOrigin}/api/posts/${postId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(f_formData).toString(),
+                credentials: 'include'
+            });
+            console.log(f_response);
+            const f_jsonResponse = await f_response.json();
+            if(!f_response.ok)
+            {
+                console.log(f_jsonResponse.message);
+                throw new Error(f_jsonResponse.message);
+            }
             if($fileInput.files[0] === undefined)
             {
+                // window.location.href = `/detail?id=${postId}`; //fix 필요: 어떻게 토스트도 보이면서 화면을 바꾸지?
                 showToast('수정 완료');
                 return;
             }
+        }
+        if($fileInput.files[0])
+        {
             const s_formData = new FormData();
             s_formData.append('postImg', $fileInput.files[0]); // 파일 추가
             const s_response = await fetch(`${beOrigin}/api/posts/uploadImg/${postId}`, {
@@ -122,10 +122,8 @@ $submitBtn.addEventListener('click', async ()=>{
             }
             else
                 showToast('수정 완료');
-        }
-    }catch (error) {
+        }}catch (error) {
         console.error('There was a problem with your fetch operation:', error);
         return;
     }
-    
 });
