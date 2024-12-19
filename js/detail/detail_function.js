@@ -26,7 +26,7 @@ export async function clickLikeBox(event, postId, $likeBox, $likeCount)
 {
     if(localStorage.getItem('user_id') === null)
     {
-        window.location.href = '/login.html';
+        window.location.href = '/login';
         return;
     }
     if(event.target.dataset.liked === 'true')
