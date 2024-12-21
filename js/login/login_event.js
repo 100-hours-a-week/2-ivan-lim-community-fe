@@ -78,7 +78,7 @@ $password.addEventListener('input', function() {
         $helperText.style.display = 'block';
         passwordBool = false;
     } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(passwordValue)) {
-        $helperText.textContent = '* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.';
+        $helperText.innerHTML = '* 비밀번호는 8자 이상, 20자 이하이며,<br>대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.';
         $helperText.style.display = 'block';
         passwordBool = false;
     } else {
