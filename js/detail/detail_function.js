@@ -1,5 +1,21 @@
 import {beOrigin} from '../env.js';
 
+export async function callUpdateViewApi(postId)
+{
+    const response = await fetch(`${beOrigin}/api/posts/view/${postId}`, {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+    });
+    if(!response.ok)
+    {
+        const jsonResponse = await response.json();
+        throw new Error(jsonResponse.message);
+    }
+}
+
 export async function getMyLikeState(postId)
 {
     try{

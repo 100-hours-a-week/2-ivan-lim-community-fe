@@ -1,4 +1,4 @@
-import {getMyLikeState, clickLikeBox} from './detail_function.js';
+import {callUpdateViewApi, getMyLikeState, clickLikeBox} from './detail_function.js';
 import {renderHeaderProfileImg} from '../function/render.js';
 import {addEventInDropdown} from '../function/commonFuction.js';
 import {utcToKst} from '../function/commonFuction.js';
@@ -44,12 +44,13 @@ try{
         $postDeleteBtn.style.display = 'none';
     }
 
+    await callUpdateViewApi(postId);
     response = await fetch(`${beOrigin}/api/posts/${postId}`)
     jsonResponse = await response.json();
     const post = jsonResponse.data;
     console.log(post);
     
-    response = await fetch(`${beOrigin}/api/users/${post.writerId}`)
+    response = await fetch(`${beOrigin}/api/users/${post.writerId}`);
     jsonResponse = await response.json();
     const user = jsonResponse.data;
     console.log(user);
@@ -83,6 +84,7 @@ async function updatePostContent(post,user) {
     const $likeCount = document.getElementById('like');
     const $viewCount = document.getElementById('view');
     const $commentCount = document.getElementById('comment');
+
     $likeCount.textContent = post.like;
     $viewCount.textContent = post.view;
     $commentCount.textContent = post.comment;
@@ -343,4 +345,4 @@ for (let checkBtn of $modalCheckBtns) {
 $commentInput.addEventListener("input", editCommentButtonState);
 $commentSubmitBtn.addEventListener("click", clickCommentSubmitBtn);
 
-addEventInDropdown(user_id);
+addEventInDropdown();
