@@ -19,6 +19,8 @@ $header.addEventListener('click', function() {
 const $fileInput = document.getElementById("fileInput");
 const $profileBox = document.querySelector('.profileBox');
 const $profileHelperText = document.querySelector('#profile-helperText');
+const $profileImage = document.querySelector('.profileBox img');
+$profileImage.src = `${beOrigin}/userProfileImg/default.png`;
 
 $profileBox.addEventListener("click", () => {
     $fileInput.click();
@@ -28,6 +30,10 @@ $fileInput.addEventListener("change", (event) => {
     const file = event.target.files[0]; // 첫 번째 파일만 가져옴
     if (file)
         $profileHelperText.style.display = 'none';
+    $profileImage.src = URL.createObjectURL(file);
+    $profileImage.onload = () => {
+        URL.revokeObjectURL($profileImg.src); // free memory
+    };
     // $fileInput.value = ""; // 선택 초기화. 굳이 안해도 된다. 오히려 안해야 change 이벤트가 발생하지 않아서 이득.
 });
 

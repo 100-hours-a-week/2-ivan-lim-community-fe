@@ -102,6 +102,8 @@ main{
 
 
 .profileBox{
+    position: relative; /* 자식 요소를 절대 위치로 배치하기 위해 사용 */
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +119,20 @@ main{
     align-items: center;
     font-size: 24px; /* + 기호 크기 */
     color: #000; /* + 기호 색상 */
+}
 
+.text-overlay {
+    position: absolute; /* 이미지 위에 텍스트를 배치 */
+    top: 50%; /* 컨테이너의 세로 중앙 */
+    left: 50%; /* 컨테이너의 가로 중앙 */
+    transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+    color: black; /* 텍스트 색상 */
+    font-size: 24px; /* 텍스트 크기 */
+    font-weight: bold; /* 텍스트 굵게 */
+    background-color: rgba(0, 0, 0, 0); /* 텍스트 배경을 반투명하게 */
+    /* padding: 10px 20px; 텍스트 배경 크기 조정 */
+    border-radius: 5px; /* 배경에 둥근 모서리 추가 */
+    cursor: pointer;
 }
 
 .mainWrap--joinForm{
