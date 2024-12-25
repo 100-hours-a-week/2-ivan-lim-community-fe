@@ -3,17 +3,7 @@ import {addEventInDropdown, showToast} from '../function/commonFuction.js';
 import { user_id } from './passModi.js';
 import { beOrigin } from '../env.js';
 
-const $headerProfileImg = document.querySelector('#headerProfileImg');
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
-
-renderHeaderProfileImg(user_id, $headerProfileImg);
-
+renderHeaderProfileImg(user_id);
 addEventInDropdown();
 
 

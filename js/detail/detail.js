@@ -14,16 +14,7 @@ const user_id = localStorage.getItem('user_id');
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get('id');
 
-const $headerProfileImg = document.querySelector('#headerProfileImg');
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
-
-renderHeaderProfileImg(user_id, $headerProfileImg);
+renderHeaderProfileImg(user_id);
 
 const $postEditBtn = document.getElementById("postEditBtn");
 const $postDeleteBtn = document.getElementById("postDeleteBtn");

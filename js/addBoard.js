@@ -11,19 +11,7 @@ $header.addEventListener('click', function() {
     window.location.href = '/listInquiry'; // 홈 화면으로 이동
 });
 
-const $headerProfileImg = document.querySelector('#headerProfileImg');
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-
-renderHeaderProfileImg(user_id, $headerProfileImg);
-
-
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
-
+renderHeaderProfileImg(user_id);
 addEventInDropdown();
 
 

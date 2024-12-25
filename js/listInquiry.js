@@ -5,18 +5,12 @@ import { beOrigin } from './env.js';
 console.log(beOrigin);
 const user_id = localStorage.getItem('user_id');
 
-const $headerProfileImg = document.querySelector('#headerProfileImg');
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
 
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
 
-renderHeaderProfileImg(user_id, $headerProfileImg);
+
+renderHeaderProfileImg(user_id);
 
 const $writeBtn = document.querySelector('.writeBox button');
 

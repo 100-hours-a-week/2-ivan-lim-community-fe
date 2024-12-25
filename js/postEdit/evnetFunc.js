@@ -31,17 +31,8 @@ $fileInput.addEventListener("change", (event) => {
 
 // 프로필 이미지 클릭시 드롭다운으로 클릭 가능. 클릭시 각 페이지로 이동. 
 // add 필요: hover시 배경색 (E9E9E9)
-const $headerProfileImg = document.querySelector('#headerProfileImg');
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-$headerProfileImg.addEventListener('click', ()=>{
-    if($dropdownMenu.style.display === 'block') 
-        $dropdownMenu.style.display = 'none';
-    else
-        $dropdownMenu.style.display = 'block';
-});
 
-renderHeaderProfileImg(user_id, $headerProfileImg);
-
+renderHeaderProfileImg(user_id);
 addEventInDropdown();
 
 // 버튼 클릭시 api 호출하여 수정된 내용 저장
