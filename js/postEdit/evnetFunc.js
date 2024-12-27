@@ -92,8 +92,11 @@ $submitBtn.addEventListener('click', async ()=>{
             }
             if($fileInput.files[0] === undefined)
             {
-                // window.location.href = `/detail?id=${postId}`; //fix 필요: 어떻게 토스트도 보이면서 화면을 바꾸지?
                 showToast('수정 완료');
+                //1초 후 페이지 이동
+                setTimeout(()=>{
+                    window.location.href = `/detail?id=${postId}`;
+                }, 1000);
                 return;
             }
         }
@@ -113,6 +116,9 @@ $submitBtn.addEventListener('click', async ()=>{
             }
             else
                 showToast('수정 완료');
+                setTimeout(()=>{
+                    window.location.href = `/detail?id=${postId}`;
+                }, 1000);
         }}catch (error) {
         console.error('There was a problem with your fetch operation:', error);
         return;
