@@ -26,7 +26,7 @@ $passwordInput.addEventListener('input', function() {
     }
     else if(!passwordValidChk($passwordInput.value)) {
         $pwHelperText.style.display = 'block';
-        $pwHelperText.textContent = '*비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.';
+        $pwHelperText.innerHTML = '*비밀번호는 8자 이상, 20자 이하이며,<br> 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.';
     }
     else {
         $pwHelperText.style.display = 'none';

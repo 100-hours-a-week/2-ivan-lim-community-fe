@@ -161,6 +161,10 @@ main{
     color: #FF0000;
 }
 
+#pwHelperText{
+    margin-bottom: 10px;
+}
+
 .mainWrap--loginForm--formItems > button{
     width: 355px;
     height: 33px;
