@@ -330,6 +330,9 @@ main{
 }
 
 .mainWrap--historyBox--leftBox--bottom > p{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    
     font-family: Pretendard;
     font-size: 15px;
     font-weight: 400;
