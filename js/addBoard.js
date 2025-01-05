@@ -2,7 +2,7 @@ import {addEventInDropdown} from './function/commonFuction.js';
 import {renderHeaderProfileImg} from './function/render.js';
 import { beOrigin } from './env.js';
 
-const user_id = localStorage.getItem('user_id');
+const user_id = sessionStorage.getItem('user_id');
 if(!user_id) {
     location.href = '/login';
 }

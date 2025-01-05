@@ -3,7 +3,7 @@ $header.addEventListener('click', function() {
     window.location.href = '/listInquiry'; // 홈 화면으로 이동
 });
 
-const user_id = localStorage.getItem('user_id');
+const user_id = sessionStorage.getItem('user_id');
 if(!user_id) {
     location.href = '/login';
 }

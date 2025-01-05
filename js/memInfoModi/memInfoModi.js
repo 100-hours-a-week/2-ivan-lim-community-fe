@@ -3,7 +3,7 @@ import { beOrigin } from '../env.js';
 const $nicknameInput = document.querySelector('#nicknameInput');
 const $eamil = document.querySelector('#email');
 
-let user_id = localStorage.getItem('user_id');
+let user_id = sessionStorage.getItem('user_id');
 if(!user_id) {
     location.href = '/login';
 }

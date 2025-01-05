@@ -214,7 +214,7 @@ $form.addEventListener('submit', async (event)=>{
             {
                 const f_jsonResponse = await f_response.json();
                 const userId = f_jsonResponse.data.userId;
-                localStorage.setItem('user_id', userId);
+                sessionStorage.setItem('user_id', userId);
                 if($fileInput.files[0] === undefined)
                 {
                     window.location.href = "/listInquiry";

@@ -40,7 +40,8 @@ $form.addEventListener('submit', async function(event) {
             if (response.ok) {
                 const user = await response.json();
                 console.log(user);
-                localStorage.setItem('user_id', user.data.userId);
+                sessionStorage.setItem('user_id', user.data.userId);
+                
                 
                 lottieContainer.style.display = 'block';
 

@@ -3,7 +3,7 @@ import { addEventInDropdown } from './function/commonFuction.js';
 import {utcToKst} from './function/commonFuction.js';
 import { beOrigin } from './env.js';
 console.log(beOrigin);
-const user_id = localStorage.getItem('user_id');
+const user_id = sessionStorage.getItem('user_id');
 
 
 const $dropdownMenu = document.querySelector('.dropdown-menu');
@@ -87,7 +87,7 @@ async function renderPosts(posts) {
       
       postElement.innerHTML = `
         <div data-id=${post.id}>
-            <h3>${post.title}</h3>
+            <h3 id="post-${post.id}"></h3>
             <div class="postInfo">
                 <div>
                     <span>좋아요 ${post.like}</span>
@@ -100,11 +100,15 @@ async function renderPosts(posts) {
             </div>
             <div class="postWriter">
                 <img src="${beOrigin}/userProfileImg/${writer.profileImgPath ?? 'default.png'}" alt="${writer ? writer.nickname : 'Unknown'}" />
-                <span>${writer ? writer.nickname : 'Unknown'}</span>
+                <span id="writer-${writer.userId}"></span>
             </div>
         </div>
       `;
-  
+      const postTitle = postElement.querySelector(`#post-${post.id}`);
+      postTitle.textContent = post.title;
+      const writerSpan = postElement.querySelector(`#writer-${writer.userId}`);
+      writerSpan.textContent = writer ? writer.nickname : 'Unknown';
+
       // 게시글 클릭 이벤트 추가
       postElement.addEventListener('click', () => {
         const postId = post.id; // data-id 속성에서 게시글 ID 가져오기

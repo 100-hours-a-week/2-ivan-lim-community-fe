@@ -40,7 +40,7 @@ export async function getMyLikeState(postId)
 
 export async function clickLikeBox(event, postId, $likeBox, $likeCount)
 {
-    if(localStorage.getItem('user_id') === null)
+    if(sessionStorage.getItem('user_id') === null)
     {
         window.location.href = '/login';
         return;

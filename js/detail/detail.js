@@ -9,7 +9,7 @@ $header.addEventListener('click', function() {
     window.location.href = '/listInquiry'; // 홈 화면으로 이동
 });
 
-const user_id = localStorage.getItem('user_id');
+const user_id = sessionStorage.getItem('user_id');
 // URL에서 ?id=123과 같이 쿼리 문자열로 ID가 포함된 경우
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get('id');
@@ -127,11 +127,11 @@ async function renderComments(comments) {
                     <span>
                         <img src="${beOrigin}/userProfileImg/${user.profileImgPath ?? 'default.png'}" crossOrigin ="anonymous" alt="춘식" />
                     </span>
-                    <span id="writer">${user.nickname}</span>
+                    <span id="user-${user.userId}"></span>
                     <span id="time">${utcToKst(comment.date)}</span>
                 </div>
                 <div class="mainWrap--historyBox--leftBox--bottom" id="content-${comment.id}">
-                    <p>${comment.content}</p>
+                    <p id="content-${comment.id}"></p>
                 </div>
             </div>
             <div class="mainWrap--historyBox--rightBox">
@@ -139,6 +139,12 @@ async function renderComments(comments) {
                 <button class="optionBtn delete-${comment.id}">삭제</buton>
             </div>
         </div>`;
+        // xss 공격 위험이 있는 요소들에 대해 innerText로 처리
+        const writer = $historyBox.querySelector(`#user-${user.userId}`);
+        writer.textContent = user.nickname
+        const commentContent = $historyBox.querySelector(`#content-${comment.id}`);
+        commentContent.textContent = comment.content;
+        
         $mainWrap.appendChild($historyBox);
         $editBtn = $historyBox.querySelector(`.edit-${comment.id}`);
         $deleteBtn = $historyBox.querySelector(`.delete-${comment.id}`);
