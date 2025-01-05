@@ -32,7 +32,7 @@ export function addEventInDropdown() {
             if(!response.ok)
                 throw new Error('로그아웃에 실패했습니다.');
             else{
-                localStorage.removeItem('user_id');
+                sessionStorage.removeItem('user_id');
                 location.href = '/listInquiry';
             }
         }
@@ -66,3 +66,9 @@ export function showToast(message) {
         toastMessage.classList.remove('show');
     }, 3000); // 3초 후 사라짐
 };
+
+export function passwordValidChk(password) {
+    // 소문자, 대문자, 숫자, 특수문자를 포함하며 길이가 8~20자
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,20}$/;
+    return regex.test(password);
+}
