@@ -1,5 +1,5 @@
 import {renderHeaderProfileImg} from '../function/render.js';
-import {addEventInDropdown, showToast} from '../function/commonFuction.js';
+import {passwordValidChk, addEventInDropdown, showToast} from '../function/commonFuction.js';
 import { user_id } from './passModi.js';
 import { beOrigin } from '../env.js';
 
@@ -14,10 +14,6 @@ addEventInDropdown();
 
 const $passwordInput = document.querySelector('#password');
 const $pwHelperText = document.querySelector('#pwHelperText');
-
-function passwordValidChk(password) {
-    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/.test(password);
-}
 
 $passwordInput.addEventListener('input', function() {
     if($passwordInput.value === '') {

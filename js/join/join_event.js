@@ -1,5 +1,6 @@
 import {duplicateNicknameChk, duplicateEmailChk} from '../function/apiClient.js';
 import { beOrigin } from '../env.js';
+import {passwordValidChk} from '../function/commonFuction.js';
 
 const $previousBtn = document.querySelector('header > button');
 
@@ -125,10 +126,6 @@ $passwordCheckInput.addEventListener('focusout', ()=>{
         checkConditions();
     }
 });
-
-function passwordValidChk(password) {
-    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/.test(password);
-}
 
 // 닉네임
 // 닉네임 유효성 : 띄어쓰기불가, 10글자 이내

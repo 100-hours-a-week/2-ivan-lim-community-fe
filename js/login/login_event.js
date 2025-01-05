@@ -1,5 +1,5 @@
 import { beOrigin } from '../env.js';
-import { showToast } from '../function/commonFuction.js';
+import { showToast, passwordValidChk } from '../function/commonFuction.js';
 
 console.log(beOrigin);
 const $header = document.querySelector('header h1');
@@ -78,7 +78,7 @@ $password.addEventListener('input', function() {
         $helperText.textContent = '* 비밀번호를 입력해주세요';
         $helperText.style.display = 'block';
         passwordBool = false;
-    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(passwordValue)) {
+    } else if (!passwordValidChk(passwordValue)) {
         $helperText.innerHTML = '* 비밀번호는 8자 이상, 20자 이하이며,<br>대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.';
         $helperText.style.display = 'block';
         passwordBool = false;

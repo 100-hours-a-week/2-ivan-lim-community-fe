@@ -175,7 +175,7 @@ $modalCheckBtn.addEventListener('click', async (event)=>{
     });
     if(response.ok)
     {
-        localStorage.removeItem('user_id');
+        sessionStorage.removeItem('user_id');
         location.href = '/listInquiry';
     }
 });
