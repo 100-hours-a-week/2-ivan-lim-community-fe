@@ -30,7 +30,7 @@ app.get('/login', (req, res) => {
     ); // HTML 파일 응답
 });
 
-app.get('/listInquiry', (req, res) => {
+app.get(['/', '/listInquiry'], (req, res) => {
     res.sendFile(
         join(
             __dirname,
@@ -91,6 +91,10 @@ app.get('/passModi', (req, res) => {
             'html/passModi.html',
         ),
     );
+});
+
+app.use((req, res) => {
+    res.redirect('/listInquiry');
 });
 
 app.listen(port, '0.0.0.0', () => {

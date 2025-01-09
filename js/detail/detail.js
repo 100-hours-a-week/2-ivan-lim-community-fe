@@ -130,7 +130,7 @@ async function renderComments(comments) {
                     <span id="user-${user.userId}"></span>
                     <span id="time">${utcToKst(comment.date)}</span>
                 </div>
-                <div class="mainWrap--historyBox--leftBox--bottom" id="content-${comment.id}">
+                <div class="mainWrap--historyBox--leftBox--bottom">
                     <p id="content-${comment.id}"></p>
                 </div>
             </div>
@@ -171,7 +171,7 @@ async function renderComments(comments) {
             $editBtn.style.display = 'none';
             $deleteBtn.style.display = 'none';
 
-            const $commentContent = document.querySelector(`#content-${commentId} > p`);
+            const $commentContent = document.querySelector(`#content-${commentId}`);
             const $commentEditBox = document.createElement('textarea');
             
             $commentEditBox.value = $commentContent.textContent;
