@@ -94,7 +94,7 @@ app.get('/passModi', (req, res) => {
 });
 
 app.use((req, res) => {
-    res.redirect('/listInquiry');
+    res.redirect('/');
 });
 
 app.listen(port, '0.0.0.0', () => {
