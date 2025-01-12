@@ -168,7 +168,6 @@ async function renderComments(comments) {
             
             $commentContent.classList.add('comment-edit'); // 원하는 클래스 추가
             
-            // $commentContent.style.display = 'none';
             $commentContent.contentEditable = true;
             // 포커스 이동
             commentContent.focus();
@@ -199,6 +198,16 @@ async function renderComments(comments) {
                 let response;
 
                 if($commentContent.textContent.trim() !== '') {
+                    // 1. HTML 내용 가져오기
+                    const htmlContent = commentContent.innerHTML;
+                    
+                    // 2. HTML 개행 태그를 텍스트 개행으로 변환
+                    const textWithNewlines = htmlContent
+                        .replace(/<br\s*\/?>/gi, "\n") // <br> 태그를 \n으로 변환
+                        .replace(/<\/div>/gi, "") // <div> 종료 태그 제거
+                        .replace(/<div>/gi, "\n") // <div> 시작 태그를 \n으로 변환
+                        .trim(); // 불필요한 공백 제거
+
                     response = await fetch(`${beOrigin}/api/comments/${commentId}`, { // 댓글 수정
                         method: 'PATCH',
                         credentials: 'include',
@@ -207,7 +216,7 @@ async function renderComments(comments) {
                         },
                         body: JSON.stringify({
                             writerId : user_id,
-                            newContent: $commentContent.textContent
+                            newContent: textWithNewlines
                         })
                     });
                     if(!response.ok) 
