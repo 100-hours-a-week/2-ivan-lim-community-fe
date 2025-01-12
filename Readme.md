@@ -9,5 +9,5 @@
 게시글이나 댓글의 작성자가 아닌 경우에는 수정,삭제 버튼이 보이지 않도록 함.
 
 영상
-
+<video controls src="nameTeset.mp4" title="Title"></video>
 
