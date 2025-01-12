@@ -26,7 +26,7 @@ $fileInput.addEventListener("change", (event) => {
     // $fileInput.value = ""; // 선택 초기화. 굳이 안해도 된다. 오히려 안해야 change 이벤트가 발생하지 않아서 이득.
 
     $uploadMessage.textContent = file.name;
-    $submitBtn.style.backgroundColor = '#7F6AEE';
+    $submitBtn.style.backgroundColor = '#3b72f2';
 });
 
 // 프로필 이미지 클릭시 드롭다운으로 클릭 가능. 클릭시 각 페이지로 이동. 
@@ -44,9 +44,9 @@ const $contentInput = document.querySelector(".mainBody--content > textarea");
 $mainBody.addEventListener('input', ()=>{
 
     if($titleInput.value.trim() && $contentInput.value.trim() && ($titleInput.value.trim() !== post.title || $contentInput.value.trim() !== post.content))
-        $submitBtn.style.backgroundColor = '#7F6AEE';
+        $submitBtn.style.backgroundColor = '#3b72f2';
     else
-        $submitBtn.style.backgroundColor = '#ACA0EB';
+        $submitBtn.style.backgroundColor = '#a0b7eb';
 });
 
 

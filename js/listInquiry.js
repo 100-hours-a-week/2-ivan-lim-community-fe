@@ -5,10 +5,10 @@ import { beOrigin } from './env.js';
 console.log(beOrigin);
 const user_id = sessionStorage.getItem('user_id');
 
-
-const $dropdownMenu = document.querySelector('.dropdown-menu');
-
-
+const $header = document.querySelector('header h1');
+$header.addEventListener('click', function() {
+    window.location.href = '/listInquiry'; // 홈 화면으로 이동
+});
 
 renderHeaderProfileImg(user_id);
 

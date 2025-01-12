@@ -31,19 +31,19 @@ $nicknameInput.addEventListener('input', async ()=>{
     {
         $nicknameHelperText.style.display = 'none';
         if(imgChangeState)
-            $modiBtn.style.backgroundColor = '#7F6AEE';
+            $modiBtn.style.backgroundColor = '#3b72f2';
         else
-            $modiBtn.style.backgroundColor = '#ACA0EB';
+            $modiBtn.style.backgroundColor = '#a0b7eb';
     }
     else if($nicknameInput.value.length > 10){
         $nicknameHelperText.style.display = 'block';
         $nicknameHelperText.textContent = "*닉네임은 최대 10자 까지 작성 가능합니다.";
-        $modiBtn.style.backgroundColor = '#ACA0EB';
+        $modiBtn.style.backgroundColor = '#a0b7eb';
     }
     else if($nicknameInput.value.trim() === ''){
         $nicknameHelperText.style.display = 'block';
         $nicknameHelperText.textContent = "*닉네임을 입력해주세요.";
-        $modiBtn.style.backgroundColor = '#ACA0EB';
+        $modiBtn.style.backgroundColor = '#a0b7eb';
     }
     else
     {
@@ -51,11 +51,11 @@ $nicknameInput.addEventListener('input', async ()=>{
             if(await duplicateNicknameChk($nicknameInput.value)){
                 $nicknameHelperText.style.display = 'block';
                 $nicknameHelperText.textContent = "*중복된 닉네임 입니다.";
-                $modiBtn.style.backgroundColor = '#ACA0EB';
+                $modiBtn.style.backgroundColor = '#a0b7eb';
             }
             else{
                 $nicknameHelperText.style.display = 'none';
-                $modiBtn.style.backgroundColor = '#7F6AEE';
+                $modiBtn.style.backgroundColor = '#3b72f2';
                 canModi = true;
             }
     }), 300};
@@ -94,7 +94,7 @@ $fileInput.addEventListener("change", (event) => {
         URL.revokeObjectURL($profileImg.src); // free memory
     };
     imgChangeState = true;
-    $modiBtn.style.backgroundColor = '#7F6AEE';
+    $modiBtn.style.backgroundColor = '#3b72f2';
 });
 
 

@@ -180,11 +180,11 @@ const $joinBtn = document.querySelector('#joinBtn');
 function checkConditions()
 {
     if($eamilHelperText.style.display === 'none' && $passwordHelperText.style.display === 'none' && $passwordCheckHelperText.style.display === 'none' && $nicknameHelperText.style.display === 'none') {
-        $joinBtn.style.backgroundColor = '#7F6AEE';
+        $joinBtn.style.backgroundColor = '#3b72f2';
         $joinBtn.style.cursor = 'pointer';
     }
     else {
-        $joinBtn.style.backgroundColor = '#ACA0EB';
+        $joinBtn.style.backgroundColor = '#a0b7eb';
         $joinBtn.style.cursor = 'default';
     }
 }

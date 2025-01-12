@@ -39,13 +39,11 @@ try{
     response = await fetch(`${beOrigin}/api/posts/${postId}`)
     jsonResponse = await response.json();
     const post = jsonResponse.data;
-    console.log(post);
     
     response = await fetch(`${beOrigin}/api/users/${post.writerId}`);
     jsonResponse = await response.json();
     const user = jsonResponse.data;
-    console.log(user);
-    
+
     updatePostContent(post, user);
 }catch(error){
     console.error('Error:', error);
@@ -58,7 +56,6 @@ async function updatePostContent(post,user) {
 
     const $profileImage = document.querySelector('.mainWrap--header img');
     $profileImage.src = user.profileImgPath ? `${beOrigin}/userProfileImg/${user.profileImgPath}` : `${beOrigin}/userProfileImg/default.png`;
-    console.log("user.profileImgPath: ", user.profileImgPath);
 
     const $writerName = document.getElementById('writer');
     $writerName.textContent = user.nickname;
@@ -86,24 +83,23 @@ async function updatePostContent(post,user) {
     {
         if(await getMyLikeState(postId))
         {
-            $likeBox.dataset.liked = 'true';   
-            $likeBox.style.backgroundColor = '#7F6AEE';
+            $likeBox.dataset.liked = 'true';
+            $likeBox.style.backgroundColor = '#3b72f2';
         }
         else
         {
             $likeBox.dataset.liked = 'false';
             $likeBox.style.backgroundColor = '#D9D9D9';
         }
+        console.log($likeBox.dataset.liked);
     }
-    $likeBox.addEventListener('click', (event) => clickLikeBox(event, postId, $likeBox, $likeCount));
+    $likeBox.addEventListener('click', (event) => clickLikeBox(postId, $likeBox, $likeCount));
 
     const response = await fetch(`${beOrigin}/api/comments/${postId}`)
     const jsonResponse = await response.json();
     if(!response.ok)
         throw new Error(jsonResponse.message);
     const comments = jsonResponse.data.comments;
-    console.log(comments);
-
     renderComments(comments);
 }
 
@@ -118,14 +114,14 @@ async function renderComments(comments) {
         const response = await fetch(`${beOrigin}/api/users/${comment.writerId}`);
         const jsonResponse = await response.json();
         const user = jsonResponse.data;
-        console.log(user);
+        
         $historyBox = document.createElement('div');
         $historyBox.classList.add('mainWrap--historyBox');
         $historyBox.innerHTML = `<div class="mainWrap--historyBox">
             <div class="mainWrap--historyBox--leftBox">
                 <div class="mainWrap--historyBox--leftBox--top">
                     <span>
-                        <img src="${beOrigin}/userProfileImg/${user.profileImgPath ?? 'default.png'}" crossOrigin ="anonymous" alt="춘식" />
+                        <img class="userProfileImg" src="${beOrigin}/userProfileImg/${user.profileImgPath ?? 'default.png'}" crossOrigin ="anonymous" alt="춘식" />
                     </span>
                     <span id="user-${user.userId}"></span>
                     <span id="time">${utcToKst(comment.date)}</span>
@@ -151,15 +147,12 @@ async function renderComments(comments) {
         console.log(typeof user_id);
         if(parseInt(user_id) === comment.writerId)
         {
-            console.log("jackpot");
-    
             // id 전달해야 함.
             $editBtn.addEventListener('click', () => clickCommentEditBtn(comment.id));
             $deleteBtn.addEventListener('click', () => clickCommentDeleteBtn(comment.id));
         }
         else
         {
-            console.log("fail");
             $editBtn.style.display = 'none';
             $deleteBtn.style.display = 'none';
         }
@@ -172,26 +165,40 @@ async function renderComments(comments) {
             $deleteBtn.style.display = 'none';
 
             const $commentContent = document.querySelector(`#content-${commentId}`);
-            const $commentEditBox = document.createElement('textarea');
             
-            $commentEditBox.value = $commentContent.textContent;
-            $commentEditBox.classList.add('comment-edit'); // 원하는 클래스 추가
+            $commentContent.classList.add('comment-edit'); // 원하는 클래스 추가
             
-            $commentContent.style.display = 'none';
-            $commentContent.parentNode.appendChild($commentEditBox);
+            // $commentContent.style.display = 'none';
+            $commentContent.contentEditable = true;
+            // 포커스 이동
+            commentContent.focus();
+
+            // 포커스 위치를 마지막으로 이동 (선택사항)
+            const range = document.createRange(); // 범위 생성
+            const selection = window.getSelection(); // 현재 선택 영역 가져오기
+            range.selectNodeContents(commentContent); // 내용의 끝으로 범위 설정
+            range.collapse(false); // 범위를 끝으로 이동
+            selection.removeAllRanges(); // 기존 선택 영역 제거
+            selection.addRange(range); // 새로운 범위 추가
+
+            $commentContent.style.borderBottom = '2px solid';
+            $commentContent.style.borderBottomColor = '#3b72f2';
             
             // 저장 버튼 생성
             const $saveButton = document.createElement('button');
             $saveButton.textContent = '저장';
-            $commentContent.parentNode.appendChild($saveButton);
+            $saveButton.classList.add('optionBtn'); // 원하는 클래스 추가
+            document.querySelector(`.edit-${commentId}`).parentNode.appendChild($saveButton);
             
-            $commentEditBox.addEventListener('focusout', () => {
+            $commentContent.addEventListener('focusout', () => {
+                console.log('focusout');
                 $saveButton.click();
             });
 
             $saveButton.addEventListener('click', async () => {
                 let response;
-                if($commentEditBox.value.trim() !== '') {
+
+                if($commentContent.textContent.trim() !== '') {
                     response = await fetch(`${beOrigin}/api/comments/${commentId}`, { // 댓글 수정
                         method: 'PATCH',
                         credentials: 'include',
@@ -200,18 +207,18 @@ async function renderComments(comments) {
                         },
                         body: JSON.stringify({
                             writerId : user_id,
-                            newContent: $commentEditBox.value
+                            newContent: $commentContent.textContent
                         })
                     });
-                    if(response.ok) 
-                        $commentContent.textContent = $commentEditBox.value;
-                    else
+                    if(!response.ok) 
                     {
                         const jsonResponse = await response.json();
                         throw new Error(jsonResponse.message);
                     }
                 }
-                $commentEditBox.remove();
+                $commentContent.classList.remove('comment-edit'); // 원하는 클래스 제거
+                $commentContent.contentEditable = false;
+                $commentContent.style.borderBottom = 'none';
                 $saveButton.remove();
                 $commentContent.style.display = 'block';
                 $editBtn.style.display = 'inline-block';
@@ -221,6 +228,8 @@ async function renderComments(comments) {
         }
 
         function clickCommentDeleteBtn(commentId){
+            const $modalContentHeader = document.querySelector('.modalContent--header')
+            $modalContentHeader.textContent = '댓글을 삭제하시겠습니까?';
             $modal.style.display = 'flex';
             modalType = CommentModal;
             selectedCommentId = commentId;
@@ -254,6 +263,8 @@ function clickPostEditBtn() {
 }
 // post 삭제 버튼 클릭시
 function clickPostDeleteBtn() {
+    const $modalContentHeader = document.querySelector('.modalContent--header')
+    $modalContentHeader.textContent = '게시글을 삭제하시겠습니까?';
     modalType = PostModal;
     $modal.style.display = 'flex';
 }
@@ -302,9 +313,9 @@ async function clickCheckBtn() {
 
 function editCommentButtonState() {
     if (user_id && $commentInput.value.trim() !== '') {
-        $commentSubmitBtn.style.backgroundColor = '#7F6AEE';
+        $commentSubmitBtn.style.backgroundColor = '#3b72f2';
     } else {
-        $commentSubmitBtn.style.backgroundColor = '#ACA0EB';
+        $commentSubmitBtn.style.backgroundColor = '#a0b7eb';
     }
 }
 

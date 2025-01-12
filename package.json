@@ -17,6 +17,7 @@
   "description": "",
   "dependencies": {
     "@eslint/eslintrc": "^3.1.0",
+    "bootstrap": "^5.3.3",
     "connect-timeout": "^1.9.0",
     "dotenv": "^16.4.7",
     "eslint-config-airbnb": "^19.0.4",

@@ -48,10 +48,10 @@ function clickPreviousBtn() {
 // 입력 필드의 값이 변경될 때마다 확인
 function updateButtonState() {
     if ($titleInput.value.trim() !== '' && $contentInput.value.trim() !== '') {
-        $submitButton.style.backgroundColor = '#7F6AEE';
+        $submitButton.style.backgroundColor = '#3b72f2';
     } else {
         // $helperText.style.display = 'none';
-        $submitButton.style.backgroundColor = '#ACA0EB';
+        $submitButton.style.backgroundColor = '#a0b7eb';
     }
 }
 

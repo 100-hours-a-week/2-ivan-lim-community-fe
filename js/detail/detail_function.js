@@ -38,23 +38,23 @@ export async function getMyLikeState(postId)
     }
 }
 
-export async function clickLikeBox(event, postId, $likeBox, $likeCount)
+export async function clickLikeBox(postId, $likeBox, $likeCount)
 {
     if(sessionStorage.getItem('user_id') === null)
     {
         window.location.href = '/login';
         return;
     }
-    if(event.target.dataset.liked === 'true')
+    if($likeBox.dataset.liked === 'true')
     {
-        event.target.dataset.liked = 'false';
+        $likeBox.dataset.liked = 'false';
         $likeBox.style.backgroundColor = '#D9D9D9';
         $likeCount.textContent = parseInt($likeCount.textContent) - 1;
     }
     else
     {
-        event.target.dataset.liked = 'true';
-        $likeBox.style.backgroundColor = '#7F6AEE';
+        $likeBox.dataset.liked = 'true';
+        $likeBox.style.backgroundColor = '#3b72f2';
         $likeCount.textContent = parseInt($likeCount.textContent) + 1;
     }
     try{

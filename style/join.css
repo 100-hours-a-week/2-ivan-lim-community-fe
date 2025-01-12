@@ -2,7 +2,7 @@ body{
     width: 100vw;
     height: 100vh;
 
-    background-color: #f0f0f0
+    background-color: #f6f5ef
 }
 
 header{
@@ -30,6 +30,7 @@ header>h1{
 
 header>button{
     cursor: pointer;
+    background-color: #f6f5ef;
     
     width: 10%;
     text-align: center;
@@ -171,7 +172,7 @@ main{
     border: none;
     border-radius: 4px;
 
-    background-color: #ACA0EB;
+    background-color: #a0b7eb;
     color: #fff;
 }
 

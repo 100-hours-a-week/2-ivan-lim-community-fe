@@ -94,9 +94,9 @@ const $submitBtn = document.querySelector('button');
 $inputs.forEach(function(input) {
     input.addEventListener('input', function() {
         if($email.validity.typeMismatch || !passwordBool)
-            $submitBtn.style.backgroundColor = '#ACA0EB';
+            $submitBtn.style.backgroundColor = '#a0b7eb';
         else
-            $submitBtn.style.backgroundColor = '#7F6AEE'; 
+            $submitBtn.style.backgroundColor = '#3b72f2'; 
     }
     );
 });

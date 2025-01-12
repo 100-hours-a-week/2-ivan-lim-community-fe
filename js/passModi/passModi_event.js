@@ -59,10 +59,10 @@ const $submitBtn = document.querySelector('#submitBtn');
 
 function allInputValidChk() {
     if($pwHelperText.style.display === 'none' && $pwChkHelperText.style.display === 'none') {
-        $submitBtn.style.backgroundColor = '#7F6AEE';
+        $submitBtn.style.backgroundColor = '#3b72f2';
     }
     else {
-        $submitBtn.style.backgroundColor = '#ACA0EB';
+        $submitBtn.style.backgroundColor = '#a0b7eb';
     }
 }
 

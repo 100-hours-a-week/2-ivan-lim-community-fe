@@ -1,12 +1,13 @@
 body{
     height: 100vh;
-    background: #F4F5F7;
+    background: #f6f5ef;
 
 }
 
 header{
     width: 100%;
     height: 104px;
+
     gap: 0px;
     border-bottom: 1px solid #000;
     box-sizing: border-box;
@@ -16,6 +17,9 @@ header{
     align-items: center;
 }
 
+header h1{
+    cursor: pointer;
+}
 
 .titleWrap{
     width: 600px;
@@ -71,6 +75,7 @@ span{
 .profileBox img{
     width: 36px;
     height: 36px;
+    border-radius: 50%;
 }
 
 .dropdown-menu {
@@ -78,7 +83,6 @@ span{
     top: 70px; /* 헤더 바로 아래 */
     /* right: 20px; 오른쪽 정렬 */
     width: 120px; /* 드롭다운 너비 */
-    background-color: #fff; /* 배경 흰색 */
     border: 1px solid #ccc; /* 경계선 */
     border-radius: 4px; /* 모서리 둥글게 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
@@ -141,16 +145,36 @@ b{
 }
 
 .writeBox button{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, 
+        red, orange, yellow, green, blue, indigo, violet);
+    background-size: 100%; /* 기본 상태 */
+    cursor: pointer;
+    transition: background-size 0.3s ease; /* 부드러운 전환 */
+
     width: 138px;
     height: 39px;
     border-radius: 16px;
-    background-color: #ACA0EB;
     border: none;
     color : #fff;
 }
 
 .writeBox button:hover{
-    background-color: #7F6AEE;
+    background-size: 300%; /* 배경 확대 */
+    animation: rainbow 3s infinite linear; /* 애니메이션 시작 */
+}
+
+/* 애니메이션 정의 */
+@keyframes rainbow {
+    0% { background-position: 0%; }
+    100% { background-position: 100%; }
 }
 
 .listBox{
@@ -166,7 +190,11 @@ b{
     align-items: center;
     margin-bottom: 7px;
     border-radius :16px;
+}
 
+.post:hover{
+    background-color: #f9f5db;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .post>div{
@@ -200,5 +228,6 @@ b{
     width: 36px;
     height: 36px;
 
-    margin-right : 10px
+    margin-right : 10px;
+    border-radius: 50%;
 }
