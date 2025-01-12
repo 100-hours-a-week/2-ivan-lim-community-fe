@@ -10,4 +10,4 @@
 
 영상
 
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YBYSjDtJ-78/0.jpg)](https://www.youtube.com/watch?v=YBYSjDtJ-78)
