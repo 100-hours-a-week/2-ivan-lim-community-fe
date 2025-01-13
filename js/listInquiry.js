@@ -18,7 +18,6 @@ $writeBtn.addEventListener('click', function() {
     window.location.href = '/addBoard'; // 홈 화면으로 이동
 });
 
-
 let offset = 0;
 let isFetching = false;
 let hasMore = true;
@@ -99,7 +98,7 @@ async function renderPosts(posts) {
                 </div>
             </div>
             <div class="postWriter">
-                <img src="${beOrigin}/userProfileImg/${writer.profileImgPath ?? 'default.png'}" alt="${writer ? writer.nickname : 'Unknown'}" />
+                <img src="${beOrigin}/userProfileImg/${writer.profileImgPath ?? 'default.png'}" alt="${writer ? writer.nickname : 'Unknown'}" onerror="this.onerror=null; this.src='../default_image.jpg';"/>
                 <span id="writer-${writer.userId}"></span>
             </div>
         </div>
