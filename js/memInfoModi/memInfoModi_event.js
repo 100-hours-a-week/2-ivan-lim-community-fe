@@ -24,8 +24,10 @@ const $modiBtn = document.querySelector('#modiBtn');
 let canModi = false;
 let imgChangeState = false;
 
+let debounceTimeout;
 
 $nicknameInput.addEventListener('input', async ()=>{
+    clearTimeout(debounceTimeout);
     canModi = false;
     if($nicknameInput.value.trim() === nickname)
     {
@@ -58,7 +60,8 @@ $nicknameInput.addEventListener('input', async ()=>{
                 $modiBtn.style.backgroundColor = '#3b72f2';
                 canModi = true;
             }
-    }), 300};
+        }, 300);
+    }
 });
 
 // 프로필 변경 이벤트.
