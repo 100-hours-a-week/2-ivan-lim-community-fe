@@ -30,7 +30,6 @@ $fileInput.addEventListener("change", (event) => {
 });
 
 // 프로필 이미지 클릭시 드롭다운으로 클릭 가능. 클릭시 각 페이지로 이동. 
-// add 필요: hover시 배경색 (E9E9E9)
 
 renderHeaderProfileImg(user_id);
 addEventInDropdown();

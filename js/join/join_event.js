@@ -188,8 +188,6 @@ function checkConditions()
         $joinBtn.style.cursor = 'default';
     }
 }
-// fix필요 : 위의 비동기 함수 때문인지 focuscout이 두번 되어야 활성화가 됨
-
 
 // form 제출 이벤트
 const $form = document.querySelector('.mainWrap--joinForm');

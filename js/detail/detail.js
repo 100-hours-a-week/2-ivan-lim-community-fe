@@ -167,10 +167,8 @@ async function renderComments(comments) {
             const $commentContent = document.querySelector(`#content-${commentId}`);
             
             $commentContent.classList.add('comment-edit'); // 원하는 클래스 추가
-            
             $commentContent.contentEditable = true;
-            // 포커스 이동
-            commentContent.focus();
+            commentContent.focus(); // 포커스 이동
 
             // 포커스 위치를 마지막으로 이동 (선택사항)
             const range = document.createRange(); // 범위 생성
@@ -183,6 +181,8 @@ async function renderComments(comments) {
             $commentContent.style.borderBottom = '2px solid';
             $commentContent.style.borderBottomColor = '#3b72f2';
             
+            const originalContent = $commentContent.textContent;
+
             // 저장 버튼 생성
             const $saveButton = document.createElement('button');
             $saveButton.textContent = '저장';
@@ -190,14 +190,13 @@ async function renderComments(comments) {
             document.querySelector(`.edit-${commentId}`).parentNode.appendChild($saveButton);
             
             $commentContent.addEventListener('focusout', () => {
-                console.log('focusout');
                 $saveButton.click();
             });
 
             $saveButton.addEventListener('click', async () => {
                 let response;
-
-                if($commentContent.textContent.trim() !== '') {
+                const content =  $commentContent.textContent.trim();
+                if(content !== '' && content !== originalContent) {
                     // 1. HTML 내용 가져오기
                     const htmlContent = commentContent.innerHTML;
                     
@@ -225,6 +224,8 @@ async function renderComments(comments) {
                         throw new Error(jsonResponse.message);
                     }
                 }
+                else
+                    $commentContent.textContent = originalContent;
                 $commentContent.classList.remove('comment-edit'); // 원하는 클래스 제거
                 $commentContent.contentEditable = false;
                 $commentContent.style.borderBottom = 'none';
