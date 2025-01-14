@@ -98,7 +98,7 @@ async function renderPosts(posts) {
                 </div>
             </div>
             <div class="postWriter">
-                <img src="${beOrigin}/userProfileImg/${writer.profileImgPath ?? 'default.png'}" alt="${writer ? writer.nickname : 'Unknown'}" onerror="this.onerror=null; this.src='../default_image.jpg';"/>
+                <img src="${beOrigin}/userProfileImg/${writer.profileImgPath ?? 'default.png'}" alt="${writer ? writer.nickname : 'Unknown'}" />
                 <span id="writer-${writer.userId}"></span>
             </div>
         </div>
