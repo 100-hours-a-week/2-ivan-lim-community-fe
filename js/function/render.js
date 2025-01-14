@@ -23,7 +23,11 @@ export async function renderHeaderProfileImg(user_id)
         }  
     }
     else
-        $loginLogoutBtn.textContent = '로그인';
+    {
+        document.querySelector('.dropdown-menu li:nth-child(1)').remove();
+        document.querySelector('.dropdown-menu li:nth-child(1)').remove();
+        $loginLogoutBtn.textContent = '로그인';   
+    }
 
 
     $headerProfileImg.addEventListener('click', ()=>{

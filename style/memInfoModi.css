@@ -253,7 +253,8 @@ main{
 #withdrawlBox > button
 {
     width : 100%;
-
+    background-color: #f6f5ef;
+    
     border: none;
     cursor: pointer;
 }
