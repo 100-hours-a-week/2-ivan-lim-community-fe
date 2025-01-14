@@ -18,3 +18,8 @@ CMD [ "npm", "start" ]
 
 # 컨테이너가 리스닝할 포트 설정  
 EXPOSE 3000
+# docker build -t front:test .
+# docker run -d --name front -p 3000:3000 -v $(pwd):/app -v /app/node_modules front:test
+# 호스트 디렉터리를 마운트하되, node_modules 디렉터리를 제외
+
+# docker logs -f front
