@@ -463,8 +463,12 @@ main{
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
 
-    background-color: #242424;
+    background-color: #9e9c9c; /* disabled color */
     color: #FFFFFF;
+}
+
+.modalContent--cancelBtn:hover{
+    background-color: #242424; /* active color */
 }
 
 .modalContent--checkBtn{
@@ -478,4 +482,8 @@ main{
 
     background-color: #a0b7eb;
     color: #000000;
+}
+
+.modalContent--checkBtn:hover{
+    background-color: #3b72f2;
 }
