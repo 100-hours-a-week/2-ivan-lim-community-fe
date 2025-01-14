@@ -127,7 +127,15 @@ $modiBtn.addEventListener('click', async (event)=>{
                 throw new Error(f_jsonResponse.message);
             if($fileInput.files[0] === undefined)
             {
+                // 버튼 비활성화
+                $modiBtn.disabled = true;
+                $modiBtn.style.backgroundColor = '#a0b7eb';
+
                 showToast('수정 완료');
+                //1초 후 페이지 이동
+                setTimeout(()=>{
+                    window.location.href = `/listInquiry`;
+                }, 1000);
                 return;
             }
         }
@@ -148,7 +156,7 @@ $modiBtn.addEventListener('click', async (event)=>{
             throw new Error(s_responseJson.message);
         }
     }
-    }catch(e){
+    }catch(error){
         console.error('There was a problem with your fetch operation:', error);
     }
     

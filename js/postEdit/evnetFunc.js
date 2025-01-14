@@ -91,6 +91,9 @@ $submitBtn.addEventListener('click', async ()=>{
             }
             if($fileInput.files[0] === undefined)
             {
+                // 버튼 비활성화
+                $submitBtn.disabled = true;
+                $submitBtn.style.backgroundColor = '#a0b7eb';
                 showToast('수정 완료');
                 //1초 후 페이지 이동
                 setTimeout(()=>{

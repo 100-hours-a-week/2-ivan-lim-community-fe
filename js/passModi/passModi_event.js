@@ -86,6 +86,16 @@ $submitBtn.addEventListener('click', async function(event) {
         if(!response.ok)
             showToast('수정 실패');
         else
+        {
+            // 버튼 비활성화
+            $submitBtn.disabled = true;
+            $submitBtn.style.backgroundColor = '#a0b7eb';
+
             showToast('수정 완료');
+            setTimeout(()=>{
+                window.location.href = `/listInquiry`;
+            }, 1000);
+            return;
+        }
     }
 });
